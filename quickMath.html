@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>On Ya Toes</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" media="screen" href="math.css" />
+  
+</head>
+<body>
+  <div class=""><h1>On Ya Toes Then</h1></div>
+  <div class="decorCont"> <!-- holds animations?-->
+    <div class="timer1 tR" id="timerTR"></div>
+    <div class="timer2 bR" id="timerBR"></div>
+    <div class="timer1 bL" id="timerBL"></div>
+    <div class="timer2 tL" id="timerTL"></div>
+
+    <div class="innerCont"> <!-- holds title and questions-->
+      The aim of the game is to use the calculator to answer the questions correctly as quick
+      as you can,<br>
+      Each round has a timer, 1st round starts at 15 seconds (maybe 10)<br>
+      Getting the answer right will get you X points<br>
+      Getting questions wrong will deduct points<br>
+      How quickly you answer will also effect your points (quick correct answer = +points)<br>
+      You have X lives, run out and your current score will be your final score.
+      X amount of rounds and then a bonus/boss round, with more time and points at stake.
+      <input id="quiz" onclick="showStart()">
+    </div>
+  </div>
+
+  <!--//////////////         Calculator         ///////////-->
+  <div class="calcCont"> 
+    <div>
+      <input class="display" id="amount" type="text" placeholder="0" disabled="disabled">
+    </div>
+    <div class="row1Btns">
+      <button class="clearBtn" onclick="reset()">C</button>
+      <button class="delBtn" onclick="delOne()">Del</button>
+      <button onclick="opBtns('÷')">÷</button>
+      <button class="multi" onclick="opBtns('×')">×</button>
+    </div>
+    <div class="row2Btns">
+      <button onclick="numBtns(7)">7</button>
+      <button onclick="numBtns(8)">8</button>
+      <button onclick="numBtns(9)">9</button>
+      <button onclick="minusBtn('-')">-</button>
+    </div>
+    <div class="row3Btns">
+      <button onclick="numBtns(4)">4</button> 
+      <button onclick="numBtns(5)">5</button> 
+      <button onclick="numBtns(6)">6</button> 
+      <button onclick="opBtns('+')">+</button>
+    </div>
+    <div class="row4Btns">
+      <button onclick="numBtns(1)">1</button>     
+      <button onclick="numBtns(2)">2</button>     
+      <button onclick="numBtns(3)">3</button>     
+      <button class="equals" onclick="equals()">=</button>
+    </div>
+    <div class="row5Btns">
+      <button class="emptyCell"></button>
+      <button onclick="numBtns(0)">0</button>        
+      <button onclick="decimalBtn('.')">.</button>   
+    </div>          
+  </div>
+  <script src="math.js"></script>    
+</body>
+
+<!-- 
+  <button onclick="percentageBtn('%')">%</button>
+-->

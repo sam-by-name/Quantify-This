@@ -1,0 +1,149 @@
+h1 {
+  text-align      : center;
+  height : 10%;
+  width  : 100%;
+}
+
+/*//////            Decor container               /////*/
+.decorCont {
+  height          : 50%;
+  width           : 100%;
+
+}
+
+.timer1 {
+  width           : 50px;
+  height          : 50px;
+  background      : #32CD32;
+  transition-timing-function:linear;
+  position        : absolute;
+}
+.timer2 {
+  width           : 50px;
+  height          : 50px;
+  background      : #32CD32;
+  transition-timing-function:linear;
+  position        : absolute;
+}
+.timer1:hover {
+  width           : 100%;
+} 
+.timer2:hover {
+  height          : 50%;
+} 
+.tR {
+  right           : 0;
+  transition      : width 10s;
+}
+.bR {
+  right           : 0;
+  bottom          : 40%;
+  transition      : height 10s;
+  
+}
+.bL {
+  bottom          : 40%;
+  left            : 0;
+  transition      : width 10s;
+
+}
+.tL {
+  left            : 0;
+  transition      : height 10s;
+}
+
+/*//////            Inner container            /////*/
+.innerCont {
+  position        : relative;
+  padding         : 10%;
+ 
+}
+
+
+
+
+
+
+/*//////            Bottom container            /////*/
+.calcCont {
+  height          : 40% ;
+  padding         : 0 20% 0 20%;
+  margin          : 0;
+  background-color: rgb(71, 71, 71);
+  border          : 1px solid black;
+  position        : absolute;
+  bottom          : 0;
+  left            : 0;
+  right           : 0;
+}
+button{
+  width           : 23%;
+  margin          : 2px 0;
+  padding         : 2px 2px;
+  color           : white;
+  font-size       : 2em;
+  border-radius   : 5%;
+  border-color    : rgb(0,0,0,0) ;
+  background-color: rgb(94, 94, 94);
+}
+button:hover {
+  border-color    : lightgrey;
+}
+button:active {
+  background-color: lightgrey;
+}
+.display {
+  margin-top      : 0 !important;
+  width           : 100%;
+  height          : 50px;
+  font-size       : 2em;
+  text-align      : right;
+}
+
+/* ////////////////////// ROW 1 //////////////////////// */
+.row1Btns {
+  padding   : 0 20%;
+  margin-top: 5px;  
+}
+.clearBtn {
+
+}
+
+/* ////////////////////// ROW 2 //////////////////////// */
+.row2Btns {
+  padding : 0 20%;
+}
+
+/* ////////////////////// ROW 3 //////////////////////// */
+.row3Btns {
+  padding : 0 20%;
+} 
+/* ////////////////////// ROW 4 //////////////////////// */
+.row4Btns {
+  padding : 0 20%;
+}
+.equals {
+  background-color: orange;
+  position        : absolute;
+  width           : 8.2%;
+  margin-left     : 6px;
+  height          : 26%;
+}
+
+/* ////////////////////// ROW 5 //////////////////////// */
+.row5Btns {
+  padding : 0 20%;
+}
+.emptyCell {
+  background-color: none !important;
+}
+
+
+/*
+.firstRow2 button {
+  background-color: rgb(19, 15, 15);
+  color           : white;
+}
+.firstRow2 button:active {
+  background-color: rgb(185, 179, 179);
+}*/
