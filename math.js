@@ -73,3 +73,75 @@ document.getElementById("amount").value = ans;  // display answer
 z = [];                                         // z gets reset
 tempNum = ans;                                  // tempNum gets answer so math can continue
 }
+
+
+
+//////////////////// The Game Mechanics ////////////////////////////////////
+
+function showStart () {
+  let element = document.getElementById('quiz');
+  element.innerHTML = "Now we're cooking";
+
+}
+
+
+function countDown () {
+  let timeLeft = 10;
+  setInterval (function () {
+    timeLeft--;
+    document.getElementById('roundTimer').textContent = timeLeft;
+    if (timeLeft < 0) {
+      clearInterval(setInterval())
+    } else if (timeLeft === 0) {
+      nextRound();
+      countDown();
+    }   
+  },1000);
+}
+
+function intro () {
+  let element = document.getElementById('quiz');
+  element.innerHTML = htmlString;
+  /*let element1 = document.createElement("input");
+  element1.setAttribute("type", "button");
+  element1.attachEvent('onclick',showStart);
+  element1.onclick = function(){showStart()};
+  quiz.appendChild(element1);*/
+  scoreTot();
+  roundRep();
+  livesLeft();
+  timer();
+  countDown();
+}
+
+const htmlString = "  The aim of the game is to use the calculator to answer the questions correctly as quick\
+as you can,\
+Each round has a timer, 1st round starts at 15 seconds (maybe 10)\
+Getting the answer right will get you X points\
+Getting questions wrong will deduct points\
+How quickly you answer will also effect your points (quick correct answer = +points)\
+You have X lives, run out and your current score will be your final score.\
+X amount of rounds and then a bonus/boss round, with more time and points at stake."
+
+function scoreTot() {
+  let points = document.getElementById('score');
+  points.innerHTML = 000;
+}
+function livesLeft() {
+  let lives = document.getElementById('livesLeft');
+  lives.innerHTML = 10;
+}
+function roundRep() {
+  let roundCount = document.getElementById('round');
+  roundCount.innerHTML = 1;
+}
+
+function timer() {
+  let time = document.getElementById('roundTimer');
+  time.innerHTML = 10+"seconds";
+}
+
+function nextRound() {
+  let element = document.getElementById('quiz');
+  element.innerHTML = "Let's get it started in here";
+}
