@@ -86,7 +86,7 @@ function showStart () {
 
 function borders () {
   let movingBorder = getElementById('timerTR');
-  
+/*//////*/
 }
 
 function countDown () {
@@ -101,6 +101,12 @@ function countDown () {
       countDown();
     }   
   },1000);
+}
+
+function nextRound () {
+  
+
+  /*//////*/
 }
 
 function intro () {
@@ -149,3 +155,4 @@ function nextRound() {
   let element = document.getElementById('quiz');
   element.innerHTML = "Let's get it started in here";
 }
+
