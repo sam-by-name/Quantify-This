@@ -11,9 +11,7 @@ body {
 .decorCont {
   height          : 50%;
   width           : 100%;
-
 }
-
 .timer1 {
   width           : 50px;
   height          : 50px;
@@ -42,13 +40,11 @@ body {
   right           : 0;
   bottom          : 40%;
   transition      : height 10s;
-  
 }
 .bL {
   bottom          : 40%;
   left            : 0;
   transition      : width 10s;
-
 }
 .tL {
   left            : 0;
@@ -57,11 +53,22 @@ body {
 
 /*//////            Inner container            /////*/
 .innerCont {
-  position        : relative;
-  padding         : 10%;
- 
+  position        : fixed;
+  padding         : 15%; 
+  font-family     : 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 }
 
+.innerCont button {      /* not working right now */
+  width            : 25%;
+  padding          : 2% !important;
+  margin-left      : 37.5%; 
+  background-color : yellowgreen; 
+  color            : rgb(128, 128, 221) !important;
+  transition       : transform 2s;
+}
+.innerCont button:hover {
+  transform        : rotate(1080deg) !important;
+}
 
 /*//////            Bottom container            /////*/
 .calcCont {

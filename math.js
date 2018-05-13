@@ -81,9 +81,13 @@ tempNum = ans;                                  // tempNum gets answer so math c
 function showStart () {
   let element = document.getElementById('quiz');
   element.innerHTML = "Now we're cooking";
-
+  countDown();
 }
 
+function borders () {
+  let movingBorder = getElementById('timerTR');
+  
+}
 
 function countDown () {
   let timeLeft = 10;
@@ -102,26 +106,26 @@ function countDown () {
 function intro () {
   let element = document.getElementById('quiz');
   element.innerHTML = htmlString;
-  /*let element1 = document.createElement("input");
-  element1.setAttribute("type", "button");
-  element1.attachEvent('onclick',showStart);
+  let element1 = document.createElement("button");
+  element1.innerHTML = " Lets Begin";
   element1.onclick = function(){showStart()};
-  quiz.appendChild(element1);*/
+  quiz.appendChild(element1);
   scoreTot();
   roundRep();
   livesLeft();
   timer();
-  countDown();
+  
 }
 
-const htmlString = "  The aim of the game is to use the calculator to answer the questions correctly as quick\
-as you can,\
-Each round has a timer, 1st round starts at 15 seconds (maybe 10)\
-Getting the answer right will get you X points\
-Getting questions wrong will deduct points\
-How quickly you answer will also effect your points (quick correct answer = +points)\
-You have X lives, run out and your current score will be your final score.\
-X amount of rounds and then a bonus/boss round, with more time and points at stake."
+const htmlString = "The aim of the game is to use the calculator to answer the questions correctly as quick \
+as you can.\<br>\
+Each round has a timer, 1st round starts at 15 seconds (maybe 10)\ <br>\
+Getting the answer right will get you X points \<br>\
+Getting questions wrong will deduct points \<br>\
+How quickly you answer will also effect your points (quick correct answer = +points) \<br>\
+You have X lives, run out and your current score will be your final score.\<br>\
+X amount of rounds and then a bonus/boss round, with more time and points at stake.\<br>\<br>\
+"
 
 function scoreTot() {
   let points = document.getElementById('score');
