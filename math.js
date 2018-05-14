@@ -82,11 +82,18 @@ function showStart () {
   let element = document.getElementById('quiz');
   element.innerHTML = "Now we're cooking";
   countDown();
+  borders();
 }
 
 function borders () {
-  let movingBorder = getElementById('timerTR');
-/*//////*/
+  let element = document.getElementById('timer1');
+  element.classList.add("timer1");  
+  let element2 = document.getElementById('timer2');
+  element2.classList.add("timer2");  
+  let element3 = document.getElementById('timer3');
+  element3.classList.add("timer1");  
+  let element4 = document.getElementById('timer4');
+  element4.classList.add("timer2");  
 }
 
 function countDown () {
@@ -98,7 +105,6 @@ function countDown () {
       clearInterval(setInterval())
     } else if (timeLeft === 0) {
       nextRound();
-      countDown();
     }   
   },1000);
 }
