@@ -12,26 +12,48 @@ body {
   height          : 50%;
   width           : 100%;
 }
+widthchange {
+
+}
+
 .timer1 {
   width           : 50px;
   height          : 50px;
   background      : #32CD32;
-  transition-timing-function:linear;
+  animation-name  : borderHori, colorChange;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: initial;
+  animation-direction: initial; 
   position        : absolute;
+}
+@keyframes borderHori {
+  from {width: 100%;}
+  to   {width: 0%;}
+}
+@keyframes colorChange {
+  0% {background-color: lightgreen}
+  25% {background-color: darkgreen}
+  50% {background-color: darkmagenta}
+  75% {background-color: darkred}
+  100% {background-color: red}
 }
 .timer2 {
   width           : 50px;
   height          : 50px;
   background      : #32CD32;
-  transition-timing-function:linear;
+  animation-name  : borderVert, colorChange;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-iteration-count: initial;
+  animation-direction: initial; 
   position        : absolute;
 }
-.timer1:hover {
-  width           : 100%;
-} 
-.timer2:hover {
-  height          : 50%;
-} 
+@keyframes borderVert {
+  from {height: 50%;}
+  to   {height: 0%;}
+}
+
 .tR {
   right           : 0;
   transition      : width 10s;
