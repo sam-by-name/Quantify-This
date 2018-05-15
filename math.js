@@ -93,6 +93,7 @@ function intro () {
 function showStart () {
   nextRound();
   countDown();
+  
   timeBorders();
 }
 function countDown () {
@@ -110,24 +111,16 @@ function countDown () {
 }
 
 function removeBorders () {
-  let element = document.getElementById('timer1');
-  element.classList.remove("timer1");  
-  let element2 = document.getElementById('timer2');
-  element2.classList.remove("timer2");  
-  let element3 = document.getElementById('timer3');
-  element3.classList.remove("timer1");  
-  let element4 = document.getElementById('timer4');
-  element4.classList.remove("timer2");  
+  document.getElementById('timer1').classList.remove("timer1");
+  document.getElementById('timer2').classList.remove("timer2"); 
+  document.getElementById('timer3').classList.remove("timer1");
+  document.getElementById('timer4').classList.remove("timer2");
 }
 function timeBorders () {
-  let element = document.getElementById('timer1');
-  element.classList.add("timer1");  
-  let element2 = document.getElementById('timer2');
-  element2.classList.add("timer2");  
-  let element3 = document.getElementById('timer3');
-  element3.classList.add("timer1");  
-  let element4 = document.getElementById('timer4');
-  element4.classList.add("timer2");  
+  document.getElementById('timer1').classList.add("timer1");
+  document.getElementById('timer2').classList.add("timer2"); 
+  document.getElementById('timer3').classList.add("timer1");
+  document.getElementById('timer4').classList.add("timer2");
 }
 
 function nextRound () {
