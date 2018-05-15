@@ -1,6 +1,6 @@
 let tempNum = '';                                    //  holds temp number
 let z = [];                                          //  holds string/numbers & math operators in order
-let ans = 0;                                         //  Holds answer
+let ans = 0;                                         //  Holds a
 
 ////////////// CLEAR BUTTON ////////////////////
 function reset() {                                   // AC button function
@@ -63,57 +63,20 @@ function equals() {
   for (var i = 1; i < z.length; i++) {          // loop through z
     let nextNum = Number(z[i+1])                // nextNum equals string number from z and becomes a number
     let op = z[i];                              // op equals operator from z as loop goes through it
-    if (op === '+') { ans += nextNum; }         // if op is a plus string, answer gets nextNum added to it
-    else if (op === '-') { ans -= nextNum; }    // if op is a minus string, answer gets nextNum taken from it to it
+    if (op === '+') { ans += nextNum; }         // if op is a plus string, a gets nextNum added to it
+    else if (op === '-') { ans -= nextNum; }    // if op is a minus string, a gets nextNum taken from it to it
     else if (op === '×') { ans *= nextNum; }    // || || .. ect except for times
     else if (op === '÷') { ans /= nextNum; }    // || || .. ect except for divide
     i++;                                        // iterate
   }
-document.getElementById("amount").value = ans;  // display answer
+document.getElementById("amount").value = ans;  // display a
 z = [];                                         // z gets reset
-tempNum = ans;                                  // tempNum gets answer so math can continue
+tempNum = ans;                                  // tempNum gets a so math can continue
 }
 
 
 
 //////////////////// The Game Mechanics ////////////////////////////////////
-
-function showStart () {
-  let element = document.getElementById('quiz');
-  element.innerHTML = "Now we're cooking";
-  countDown();
-  borders();
-}
-
-function borders () {
-  let element = document.getElementById('timer1');
-  element.classList.add("timer1");  
-  let element2 = document.getElementById('timer2');
-  element2.classList.add("timer2");  
-  let element3 = document.getElementById('timer3');
-  element3.classList.add("timer1");  
-  let element4 = document.getElementById('timer4');
-  element4.classList.add("timer2");  
-}
-
-function countDown () {
-  let timeLeft = 10;
-  setInterval (function () {
-    timeLeft--;
-    document.getElementById('roundTimer').textContent = timeLeft;
-    if (timeLeft < 0) {
-      clearInterval(setInterval())
-    } else if (timeLeft === 0) {
-      nextRound();
-    }   
-  },1000);
-}
-
-function nextRound () {
-  
-
-  /*//////*/
-}
 
 function intro () {
   let element = document.getElementById('quiz');
@@ -126,15 +89,52 @@ function intro () {
   roundRep();
   livesLeft();
   timer();
-  
+}
+function showStart () {
+  nextRound();
+  countDown();
+  timeBorders();
+}
+function countDown () {
+  let timeLeft = 10;
+  setInterval (function () {
+    timeLeft--;
+    document.getElementById('roundTimer').textContent = timeLeft;
+    if (timeLeft < 0) {
+      clearInterval(setInterval())            /* need to sort out setInterval on this line*/
+    } else if (timeLeft === 0) {
+      showStart();
+    }   
+  },1000);
+}
+function timeBorders () {
+  let element = document.getElementById('timer1');
+  element.classList.add("timer1");  
+  let element2 = document.getElementById('timer2');
+  element2.classList.add("timer2");  
+  let element3 = document.getElementById('timer3');
+  element3.classList.add("timer1");  
+  let element4 = document.getElementById('timer4');
+  element4.classList.add("timer2");  
 }
 
-const htmlString = "The aim of the game is to use the calculator to answer the questions correctly as quick \
+function nextRound () {
+  let element = document.getElementById('quiz');
+  element.innerHTML = "Let's get it started in here";               /*innerHTML = variable of a random index from set 1 */
+  let squareRoot = "What is the square root of"
+  let one = {q : squareRoot + "225 ?", a : 15}
+  let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]
+  let roundArr = [[set1], [set2], [set3], [set4], [set5]];
+  /*//////*/
+}
+
+
+const htmlString = "The aim of the game is to use the calculator to a the qs correctly as quick \
 as you can.\<br>\
 Each round has a timer, 1st round starts at 15 seconds (maybe 10)\ <br>\
-Getting the answer right will get you X points \<br>\
-Getting questions wrong will deduct points \<br>\
-How quickly you answer will also effect your points (quick correct answer = +points) \<br>\
+Getting the a right will get you X points \<br>\
+Getting qs wrong will deduct points \<br>\
+How quickly you a will also effect your points (quick correct a = +points) \<br>\
 You have X lives, run out and your current score will be your final score.\<br>\
 X amount of rounds and then a bonus/boss round, with more time and points at stake.\<br>\<br>\
 "
@@ -157,8 +157,47 @@ function timer() {
   time.innerHTML = 10+"seconds";
 }
 
-function nextRound() {
+
+
+function nextRound () {
   let element = document.getElementById('quiz');
-  element.innerHTML = "Let's get it started in here";
+  element.innerHTML = "Let's get it started in here";               /*innerHTML = variable of a random index from set 1 */
+  
+  /*//////*/
 }
 
+
+let squareRoot  = "What is the square root of";
+let numOfLet = "Example: (a - b) * c = x \nIf ";
+let set1 = [
+  {q : squareRoot + " 225?" , a : 15},
+  {q : squareRoot + " 256?" , a : 16},
+  {q : squareRoot + " 144?" , a : 12},
+  {q : squareRoot + " 400?" , a : 20},
+  {q : squareRoot + " 625?" , a : 25},
+  {q : squareRoot + " 900?" , a : 30},
+  {q : squareRoot + " 1024?", a : 32},
+  {q : squareRoot + " 2500?", a : 50},
+  {q : squareRoot + " 3600?", a : 60},
+  {q : squareRoot + " 4900?", a : 70}
+  ]
+let set2 = [
+  {q : numOfLet + "(17 - b)   × 10 = 110   \nWhat is 'b'?", a : 6},
+  {q : numOfLet + "(a  - 6)   × 10 = 220   \nWhat is 'a'?", a : 28},
+  {q : numOfLet + "(91 - 45.5)× c  = 682.5 \nWhat is 'c'?", a : 15},
+  {q : numOfLet + "(18 - b) × c = 100      \nWhat is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
+  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6}
+]
+
+
+/*let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]*/
+
+
+alert(set2[2].q);
+
+/*, [set2], [set3], [set4], [set5]*/
