@@ -103,9 +103,21 @@ function countDown () {
     if (timeLeft < 0) {
       clearInterval(setInterval())            /* need to sort out setInterval on this line*/
     } else if (timeLeft === 0) {
+      removeBorders();
       showStart();
     }   
   },1000);
+}
+
+function removeBorders () {
+  let element = document.getElementById('timer1');
+  element.classList.remove("timer1");  
+  let element2 = document.getElementById('timer2');
+  element2.classList.remove("timer2");  
+  let element3 = document.getElementById('timer3');
+  element3.classList.remove("timer1");  
+  let element4 = document.getElementById('timer4');
+  element4.classList.remove("timer2");  
 }
 function timeBorders () {
   let element = document.getElementById('timer1');
@@ -120,11 +132,8 @@ function timeBorders () {
 
 function nextRound () {
   let element = document.getElementById('quiz');
-  element.innerHTML = "Let's get it started in here";               /*innerHTML = variable of a random index from set 1 */
-  let squareRoot = "What is the square root of"
-  let one = {q : squareRoot + "225 ?", a : 15}
-  let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]
-  let roundArr = [[set1], [set2], [set3], [set4], [set5]];
+  element.innerHTML = set2[Math.floor(Math.random()*5)].q;               /*innerHTML = variable of a random index from set 1 */
+
   /*//////*/
 }
 
@@ -157,18 +166,8 @@ function timer() {
   time.innerHTML = 10+"seconds";
 }
 
-
-
-function nextRound () {
-  let element = document.getElementById('quiz');
-  element.innerHTML = "Let's get it started in here";               /*innerHTML = variable of a random index from set 1 */
-  
-  //////////////
-}
-
-
 let squareRoot  = "What is the square root of";
-let numOfLet = "Example: (a - b) * c = x \n\nIf ";
+let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
 let set1 = [
   {q : squareRoot + " 225?" , a : 15},
   {q : squareRoot + " 256?" , a : 16},
@@ -184,24 +183,17 @@ let set1 = [
   {q : squareRoot + " 110.25?", a : 10.5}
   ]
 let set2 = [
-  {q : numOfLet + "(17 - b) × 10 = 110   \nWhat is b?"               , a : 6},
-  {q : numOfLet + "(a  - 6) × 10 = 220   \nWhat is a?"               , a : 28},
-  {q : numOfLet + "(91 - 45.5)× c = 682.5\nWhat is c?"               , a : 15},
-  {q : numOfLet + "(18 - b) × c = 100    \nAnd c > 12 \nWhat is b?"  , a : 8}, 
-  {q : numOfLet + "(51 - b) × c = 500    \nAnd b < 5  \nWhat is c?"  , a : 10},
-  {q : numOfLet + "(7  - b) × c = 84     \nAnd c > 10 \nWhat is 'b'?", a : 0},
-  {q : numOfLet + "(a - b) × 20 = 288    \nThen a - b = ?"           , a : 14.4},
-  {q : numOfLet + "(a - b) × 100 = 550   \nThen a - b = ?"           , a : 55},
-  {q : numOfLet + "(a - b) × 5.5 = 110   \nThen a - b = ?"           , a : 20},
-  {q : numOfLet + "(a - 79) × c = 210    \nWhat is 'a'?"             , a : 100},
-  {q : numOfLet + "(69 - b) × 9 = 540    \nWhat is 'b'?"             , a : 9},
-  {q : numOfLet + "(100.2 - b) × 5 = 450 \nWhat is 'b'?"             , a : 10.2}
+  {q : numOfLet + "(17 - b) × 10 = 110   \<br>\ What is b?"                    , a : 6},
+  {q : numOfLet + "(a  - 6) × 10 = 220   \<br>\ What is a?"                    , a : 28},
+  {q : numOfLet + "(91 - 45.5)× c = 682.5\<br>\ What is c?"                    , a : 15},
+  {q : numOfLet + "(18 - b) × c = 100    \<br>\ And c > 12 \<br>\ What is b?"  , a : 8}, 
+  {q : numOfLet + "(51 - b) × c = 500    \<br>\ And b < 5  \<br>\ What is c?"  , a : 10},
+  {q : numOfLet + "(7  - b) × c = 84     \<br>\ And c > 10 \<br>\ What is 'b'?", a : 0},
+  {q : numOfLet + "(a - b) × 20 = 288    \<br>\ Then a - b = ?"                , a : 14.4},
+  {q : numOfLet + "(a - b) × 100 = 550   \<br>\ Then a - b = ?"                , a : 55},
+  {q : numOfLet + "(a - b) × 5.5 = 110   \<br>\ Then a - b = ?"                , a : 20},
+  {q : numOfLet + "(a - 79) × c = 210    \<br>\ What is 'a'?"                  , a : 100},
+  {q : numOfLet + "(69 - b) × 9 = 540    \<br>\ What is 'b'?"                  , a : 9},
+  {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2}
 ]
 
-
-//let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]
-
-
-alert(set2[3].q);
-
-//, [set2], [set3], [set4], [set5]
