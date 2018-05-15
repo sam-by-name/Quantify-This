@@ -179,7 +179,9 @@ let set1 = [
   {q : squareRoot + " 1024?", a : 32},
   {q : squareRoot + " 2500?", a : 50},
   {q : squareRoot + " 3600?", a : 60},
-  {q : squareRoot + " 4900?", a : 70}
+  {q : squareRoot + " 4900?", a : 70},
+  {q : squareRoot + " 6400?", a : 80},
+  {q : squareRoot + " 110.25?", a : 10.5}
   ]
 let set2 = [
   {q : numOfLet + "(17 - b) × 10 = 110   \nWhat is b?"               , a : 6},
@@ -191,7 +193,9 @@ let set2 = [
   {q : numOfLet + "(a - b) × 20 = 288    \nThen a - b = ?"           , a : 14.4},
   {q : numOfLet + "(a - b) × 100 = 550   \nThen a - b = ?"           , a : 55},
   {q : numOfLet + "(a - b) × 5.5 = 110   \nThen a - b = ?"           , a : 20},
-  {q : numOfLet + "(a - 79) × c = 210    \nWhat is 'b'?", a : 6}
+  {q : numOfLet + "(a - 79) × c = 210    \nWhat is 'a'?"             , a : 100},
+  {q : numOfLet + "(69 - b) × 9 = 540    \nWhat is 'b'?"             , a : 9},
+  {q : numOfLet + "(100.2 - b) × 5 = 450 \nWhat is 'b'?"             , a : 10.2}
 ]
 
 
