@@ -163,12 +163,12 @@ function nextRound () {
   let element = document.getElementById('quiz');
   element.innerHTML = "Let's get it started in here";               /*innerHTML = variable of a random index from set 1 */
   
-  /*//////*/
+  //////////////
 }
 
 
 let squareRoot  = "What is the square root of";
-let numOfLet = "Example: (a - b) * c = x \nIf ";
+let numOfLet = "Example: (a - b) * c = x \n\nIf ";
 let set1 = [
   {q : squareRoot + " 225?" , a : 15},
   {q : squareRoot + " 256?" , a : 16},
@@ -182,22 +182,22 @@ let set1 = [
   {q : squareRoot + " 4900?", a : 70}
   ]
 let set2 = [
-  {q : numOfLet + "(17 - b)   × 10 = 110   \nWhat is 'b'?", a : 6},
-  {q : numOfLet + "(a  - 6)   × 10 = 220   \nWhat is 'a'?", a : 28},
-  {q : numOfLet + "(91 - 45.5)× c  = 682.5 \nWhat is 'c'?", a : 15},
-  {q : numOfLet + "(18 - b) × c = 100      \nWhat is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6},
-  {q : numOfLet + "(17 - b) × 10 = 110 What is 'b'?", a : 6}
+  {q : numOfLet + "(17 - b) × 10 = 110   \nWhat is b?"               , a : 6},
+  {q : numOfLet + "(a  - 6) × 10 = 220   \nWhat is a?"               , a : 28},
+  {q : numOfLet + "(91 - 45.5)× c = 682.5\nWhat is c?"               , a : 15},
+  {q : numOfLet + "(18 - b) × c = 100    \nAnd c > 12 \nWhat is b?"  , a : 8}, 
+  {q : numOfLet + "(51 - b) × c = 500    \nAnd b < 5  \nWhat is c?"  , a : 10},
+  {q : numOfLet + "(7  - b) × c = 84     \nAnd c > 10 \nWhat is 'b'?", a : 0},
+  {q : numOfLet + "(a - b) × 20 = 288    \nThen a - b = ?"           , a : 14.4},
+  {q : numOfLet + "(a - b) × 100 = 550   \nThen a - b = ?"           , a : 55},
+  {q : numOfLet + "(a - b) × 5.5 = 110   \nThen a - b = ?"           , a : 20},
+  {q : numOfLet + "(a - 79) × c = 210    \nWhat is 'b'?", a : 6}
 ]
 
 
-/*let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]*/
+//let set1 = [{one}, {two}, {three}, {four}, {five}, {six}, {seven}, {eight}, {nine}, {ten}]
 
 
-alert(set2[2].q);
+alert(set2[3].q);
 
-/*, [set2], [set3], [set4], [set5]*/
+//, [set2], [set3], [set4], [set5]
