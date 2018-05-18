@@ -75,16 +75,31 @@ tempNum = ans;                                       // tempNum gets a so math c
 }
 
 //////////////// ANSWER ////////////////////////
-function equals() {
-  let tempDisp = document.getElementById('amount').value;
-  if (tempDisp == qAndA[0]) {
+let points = 0;
+let lives = 10;
+let round = 1;
 
+function answer1() {
+  if (tempNum == answer) {
+    points += 50;
+    scoreTot(); 
+
+  } else {
+    points -= 10;
+    lives  -= 1;
+    scoreTot();
+    livesLeft();
   }
+  round  += 1;
+  roundCount();
+  reset();
+  showStart();
 }
 
 
 //////////////////// The Game Mechanics ////////////////////////////////////
 
+//////////////  INTRO  ///////////////
 function intro () {
   let element = document.getElementById('quiz');
   element.innerHTML = htmlString;
@@ -93,14 +108,16 @@ function intro () {
   element1.onclick = function(){showStart()};
   quiz.appendChild(element1);
   scoreTot();
-  roundRep();
+  roundCount();
   livesLeft();
   timer();
 }
+
+///////////////////////////
 function showStart () {
   nextRound();
-  countDown();
-  
+  //countDown();
+  removeBorders();
   timeBorders();
 }
 function countDown () {
@@ -153,18 +170,14 @@ X amount of rounds and then a bonus/boss round, with more time and points at sta
 "
 
 function scoreTot() {
-  let points = document.getElementById('score');
-  points.innerHTML = 000;
+  document.getElementById('score').innerHTML = points;
 }
 function livesLeft() {
-  let lives = document.getElementById('livesLeft');
-  lives.innerHTML = 10;
+  document.getElementById('livesLeft').innerHTML = lives;
 }
-function roundRep() {
-  let roundCount = document.getElementById('round');
-  roundCount.innerHTML = 1;
+function roundCount() {
+  document.getElementById('round').innerHTML = round;
 }
-
 function timer() {
   let time = document.getElementById('roundTimer');
   time.innerHTML = 10+"seconds";
