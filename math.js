@@ -58,22 +58,29 @@ function percentageBtn (a) {                         // operator buttons functio
 
 //////////////// Equals ////////////////////////
 function equals() {    
-  z.push(tempNum);                              // add final number to z                                       
-  ans = Number(z[0]);                           // ans equals first index of z and changes to a number 
-  for (var i = 1; i < z.length; i++) {          // loop through z
-    let nextNum = Number(z[i+1])                // nextNum equals string number from z and becomes a number
-    let op = z[i];                              // op equals operator from z as loop goes through it
-    if (op === '+') { ans += nextNum; }         // if op is a plus string, a gets nextNum added to it
-    else if (op === '-') { ans -= nextNum; }    // if op is a minus string, a gets nextNum taken from it to it
-    else if (op === '×') { ans *= nextNum; }    // || || .. ect except for times
-    else if (op === '÷') { ans /= nextNum; }    // || || .. ect except for divide
-    i++;                                        // iterate
+  z.push(tempNum);                                   // add final number to z                                       
+  ans = Number(z[0]);                                // ans equals first index of z and changes to a number 
+  for (var i = 1; i < z.length; i++) {               // loop through z
+    let nextNum = Number(z[i+1])                     // nextNum equals string number from z and becomes a number
+    let op = z[i];                                   // op equals operator from z as loop goes through it
+    if (op === '+') { ans += nextNum; }              // if op is a plus string, a gets nextNum added to it
+    else if (op === '-') { ans -= nextNum; }         // if op is a minus string, a gets nextNum taken from it to it
+    else if (op === '×') { ans *= nextNum; }         // || || .. ect except for times
+    else if (op === '÷') { ans /= nextNum; }         // || || .. ect except for divide
+    i++;                                             // iterate
   }
-document.getElementById("amount").value = ans;  // display a
-z = [];                                         // z gets reset
-tempNum = ans;                                  // tempNum gets a so math can continue
+document.getElementById("amount").value = ans;       // display a
+z = [];                                              // z gets reset
+tempNum = ans;                                       // tempNum gets a so math can continue
 }
 
+//////////////// ANSWER ////////////////////////
+function equals() {
+  let tempDisp = document.getElementById('amount').value;
+  if (tempDisp == qAndA[0]) {
+
+  }
+}
 
 
 //////////////////// The Game Mechanics ////////////////////////////////////
@@ -97,7 +104,7 @@ function showStart () {
   timeBorders();
 }
 function countDown () {
-  let timeLeft = 10;
+  let timeLeft = 30;
   setInterval (function () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
@@ -123,11 +130,15 @@ function timeBorders () {
   document.getElementById('timer4').classList.add("timer2");
 }
 
+let question;
+let answer;
+
 function nextRound () {
   let element = document.getElementById('quiz');
-  element.innerHTML = set2[Math.floor(Math.random()*5)].q;               /*innerHTML = variable of a random index from set 1 */
-
-  /*//////*/
+  let randomNum = Math.floor(Math.random()*5);
+  question = set2[randomNum].q;
+  answer = set2[randomNum].a;
+  element.innerHTML = question;               /*innerHTML = variable of a random index from set 2 */
 }
 
 
@@ -189,4 +200,18 @@ let set2 = [
   {q : numOfLet + "(69 - b) × 9 = 540    \<br>\ What is 'b'?"                  , a : 9},
   {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2}
 ]
+let set3 = [
+  {q : "How long is a piece of string?" , a : ruse},
+  {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?" , a : 1},
+  {q : "1 pile of sand + 1 pile of sand = ?" , a : 1},
+  {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
+  {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
+  {q : "Reach 69 using exactly 3 math operators" , a : 30},            // write an individual function for this type of question
+  {q : squareRoot + " 1024?", a : 32},
+  {q : squareRoot + " 2500?", a : 50},
+  {q : squareRoot + " 3600?", a : 60},
+  {q : squareRoot + " 4900?", a : 70},
+  {q : squareRoot + " 6400?", a : 80},
+  {q : squareRoot + " 110.25?", a : 10.5}
+  ]
 
