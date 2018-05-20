@@ -2,6 +2,9 @@ h1 {
   text-align      : center;
   height : 10%;
   width  : 100%;
+  color      :  rgb(236, 138, 9);
+  font-size  : 300%;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 body {
   margin          : 0px;
@@ -161,25 +164,39 @@ button:active {
 }
 
 /* ////////// Time Round Lives Score //////////////////// */
+.hud {
+  background-color: white;
+  margin-top      : 0;
+  font-size       : 2em;
+  color           : blue;
+}
 
 #round {
-  top               : 0;
-  left              : 0;
+  top             : 0;
+  left            : 0;
+  padding         : 1% 3%;
+  background-color: red;
   position          : absolute;
-  /*font-size         : 5em;*/
+
 }
 #roundTimer {
-  top               : 0;
-  left              : 5%;
-  position          : absolute;
+  top             : 0;
+  left            : 12%;
+  padding         : 1% 3%;
+  background-color: green;
+  position        : absolute;
 }
 #livesLeft {
-  top               : 0;
-  right             : 5%;
-  position          : absolute;
+  top             : 0;
+  right           : 12%;
+  padding         : 1% 3%;
+  background-color: green;
+  position        : absolute;
 }
 #score {
-  top               : 0;
-  right             : 0;
-  position          : absolute;
+  top             : 0;
+  right           : 0;
+  padding         : 1% 3%;
+  background-color: red;
+  position        : absolute;
 }

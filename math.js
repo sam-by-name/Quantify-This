@@ -165,7 +165,7 @@ function failure() {
 
 function gameOver () {
   document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
-   "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing \<br>\ (but they are laughing)";
+   "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing";
   let element1 = document.createElement("button");
   element1.innerHTML = "Again?";
   element1.onclick = function(){showStart()};
