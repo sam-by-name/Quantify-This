@@ -115,7 +115,7 @@ function countDown () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
     if (timeLeft < 0) {
-      clearInterval(clock);            /* need to sort out setInterval on this line*/
+      clearInterval(clock);            
     } else if (timeLeft === 0) {
       clearInterval(clock);
       failure();
@@ -126,7 +126,7 @@ function countDown () {
 
 function scoreBoard() {
   scoreTot(); 
-  round  += 1;
+  round += 1;
   roundCount(); 
   livesLeft(); 
   timer();
@@ -153,16 +153,20 @@ function success () {
 function failure() {
   points -= 10; 
   if (lives > 0) {
-    lives -= 1
+    lives -= 1;
+    showStart();
   } else if (lives == 0) {
     gameOver();
   }
-   showStart();
 }
 
 
 function gameOver () {
-  
+  document.getElementById('quiz').innerHTML = "Your score is "+ points +"\<br>\ You gave it your best and no one is blaming you for failing ... but I am afraid it's GAME OVER for you!";
+  let element1 = document.createElement("button");
+  element1.innerHTML = "Again?";
+  element1.onclick = function(){showStart()};
+  quiz.appendChild(element1);
 }
 ////////////////////////////////////////////////////////////
 
