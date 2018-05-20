@@ -15,9 +15,9 @@ function delOne() {                                  // CE button function
   let tempDisp = document.getElementById('amount').value;
   let newDisp = tempDisp.slice(0, -1);
   if (tempNum !== '') {                              // works on everything until it gets a percentage 
-    tempNum = tempNum.slice(0, -1);                  // and because that e.g: '33%' is now actually a 21.33 number
-  } else ((tempNum = z.pop()) && delOne());          // the whats being removed from the display to whats   
-  document.getElementById('amount').value = newDisp; // being removed from the tempNum is out of whack
+    tempNum = tempNum.slice(0, -1);                  // and because of that, (e.g: '33%' is now actually a 21.33)
+  } else ((tempNum = z.pop()) && delOne());          // the 'whats being removed from the display' to 'whats   
+  document.getElementById('amount').value = newDisp; // being removed from the tempNum' is out of whack :s
 }
 
 ////////////// NUMBER BUTTONS //////////////////
@@ -74,65 +74,97 @@ z = [];                                              // z gets reset
 tempNum = ans;                                       // tempNum gets a so math can continue
 }
 
-//////////////// ANSWER ////////////////////////
-let points = 0;
-let lives = 10;
-let round = 1;
 
-function answer1() {
-  if (tempNum == answer) {
-    points += 50;
-    scoreTot(); 
-
-  } else {
-    points -= 10;
-    lives  -= 1;
-    scoreTot();
-    livesLeft();
-  }
-  round  += 1;
-  roundCount();
-  reset();
-  showStart();
-}
 
 
 //////////////////// The Game Mechanics ////////////////////////////////////
+//    Game's Global Variables    //
+let points = 0;
+let lives = 10;
+let round = -1;
+let timeLeft = 5;
+let question;
+let answer;
+let clock;
 
 //////////////  INTRO  ///////////////
 function intro () {
-  let element = document.getElementById('quiz');
-  element.innerHTML = htmlString;
+  document.getElementById('quiz').innerHTML = htmlString;
   let element1 = document.createElement("button");
   element1.innerHTML = " Lets Begin";
   element1.onclick = function(){showStart()};
   quiz.appendChild(element1);
-  scoreTot();
-  roundCount();
-  livesLeft();
-  timer();
+  scoreBoard();
 }
 
+
 ///////////////////////////
-function showStart () {
-  nextRound();
-  //countDown();
+function showStart() {
+  clearInterval(clock);
+  scoreBoard();
   removeBorders();
+  nextRound();
+  countDown();
   timeBorders();
 }
+
+
 function countDown () {
-  let timeLeft = 30;
-  setInterval (function () {
+  timeLeft = 20;
+  clock = setInterval (function () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
     if (timeLeft < 0) {
-      clearInterval(setInterval())            /* need to sort out setInterval on this line*/
+      clearInterval(clock);            /* need to sort out setInterval on this line*/
     } else if (timeLeft === 0) {
-      removeBorders();
-      showStart();
+      clearInterval(clock);
+      failure();
     }   
   },1000);
 }
+
+
+function scoreBoard() {
+  scoreTot(); 
+  round  += 1;
+  roundCount(); 
+  livesLeft(); 
+  timer();
+  reset();
+}
+
+
+
+//////////////// ANSWER ////////////////////////
+function theAnswer() {
+  if (tempNum == answer) {
+    success();
+  } else {
+    failure();
+  }
+}
+
+
+function success () {
+  points += 50; showStart();
+}
+
+
+function failure() {
+  points -= 10; 
+  if (lives > 0) {
+    lives -= 1
+  } else if (lives == 0) {
+    gameOver();
+  }
+   showStart();
+}
+
+
+function gameOver () {
+  
+}
+////////////////////////////////////////////////////////////
 
 function removeBorders () {
   document.getElementById('timer1').classList.remove("timer1");
@@ -147,14 +179,16 @@ function timeBorders () {
   document.getElementById('timer4').classList.add("timer2");
 }
 
-let question;
-let answer;
-
 function nextRound () {
   let element = document.getElementById('quiz');
-  let randomNum = Math.floor(Math.random()*5);
-  question = set2[randomNum].q;
-  answer = set2[randomNum].a;
+  let qNA = set2;
+  for (let i = qNA.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
+  }
+  question = qNA[0].q;
+  answer   = qNA[0].a;
+  qNA.shift();
   element.innerHTML = question;               /*innerHTML = variable of a random index from set 2 */
 }
 
@@ -180,12 +214,13 @@ function roundCount() {
 }
 function timer() {
   let time = document.getElementById('roundTimer');
-  time.innerHTML = 10+"seconds";
+  time.innerHTML = timeLeft;
 }
 
 let squareRoot  = "What is the square root of";
 let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
-let set1 = [
+
+let set2 = [
   {q : squareRoot + " 225?" , a : 15},
   {q : squareRoot + " 256?" , a : 16},
   {q : squareRoot + " 144?" , a : 12},
@@ -197,9 +232,7 @@ let set1 = [
   {q : squareRoot + " 3600?", a : 60},
   {q : squareRoot + " 4900?", a : 70},
   {q : squareRoot + " 6400?", a : 80},
-  {q : squareRoot + " 110.25?", a : 10.5}
-  ]
-let set2 = [
+  {q : squareRoot + " 110.25?", a : 10.5},  
   {q : numOfLet + "(17 - b) × 10 = 110   \<br>\ What is b?"                    , a : 6},
   {q : numOfLet + "(a  - 6) × 10 = 220   \<br>\ What is a?"                    , a : 28},
   {q : numOfLet + "(91 - 45.5)× c = 682.5\<br>\ What is c?"                    , a : 15},
@@ -214,17 +247,17 @@ let set2 = [
   {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2}
 ]
 let set3 = [
-  {q : "How long is a piece of string?" , a : ruse},
+  {q : "How long is a piece of string?" , a : 'ruse'},
   {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?" , a : 1},
   {q : "1 pile of sand + 1 pile of sand = ?" , a : 1},
   {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
   {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
-  {q : "Reach 69 using exactly 3 math operators" , a : 30},            // write an individual function for this type of question
-  {q : squareRoot + " 1024?", a : 32},
-  {q : squareRoot + " 2500?", a : 50},
-  {q : squareRoot + " 3600?", a : 60},
-  {q : squareRoot + " 4900?", a : 70},
-  {q : squareRoot + " 6400?", a : 80},
-  {q : squareRoot + " 110.25?", a : 10.5}
+  {q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
+  //{q : , a : },
+  //{q : , a : },
+  //{q : , a : },
+  //{q : , a : },
+  //{q : , a : },
+  //{q : , a : }
   ]
 
