@@ -82,7 +82,9 @@ tempNum = ans;                                       // tempNum gets a so math c
 let points = 0;
 let lives = 10;
 let round = -1;
-let timeLeft = 20;
+let timeLeft = 5;
+let questionPool;
+let qNA;
 let question;
 let answer;
 let clock;
@@ -95,36 +97,45 @@ function intro () {
   element1.onclick = function(){showStart()};
   quiz.appendChild(element1);
   scoreBoard();
+  randomQs();
+}
+
+//////////////// Randomize Question Pool ///////////
+
+function randomQs() {
+  qNA = questionPool;
+  for (let i = qNA.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
+  }
 }
 
 
 ///////////////////////////
 function showStart() {
   clearInterval(clock);
-  scoreBoard();
-  removeBorders();
-  nextRound();
   countDown();
+  scoreBoard();
+  nextRound();
   timeBorders();
 }
 
 
 function countDown () {
-  timeLeft = 20;
+  timeLeft = 5;
   clock = setInterval (function () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
-    if (timeLeft < 0) {
-      clearInterval(clock);            
-    } else if (timeLeft === 0) {
-      clearInterval(clock);
-      failure();
-    }   
+    if (timeLeft === 0) {
+      clearInterval(clock); 
+      failure();           
+    } 
   },1000);
 }
 
 
 function scoreBoard() {
+  removeBorders();
   scoreTot(); 
   round += 1;
   roundCount(); 
@@ -188,11 +199,6 @@ function timeBorders () {
 
 function nextRound () {
   let element = document.getElementById('quiz');
-  let qNA = set2;
-  for (let i = qNA.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
-  }
   question = qNA[0].q;
   answer   = qNA[0].a;
   qNA.shift();
@@ -226,7 +232,7 @@ function timer() {
 let squareRoot  = "What is the square root of";
 let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
 
-let set2 = [
+questionPool = [
   {q : squareRoot + " 225?" , a : 15},
   {q : squareRoot + " 256?" , a : 16},
   {q : squareRoot + " 144?" , a : 12},

@@ -20,7 +20,7 @@ body {
   height          : 50px;
   background      : #32CD32;
   animation-name  : borderHori, colorChange;
-  animation-duration: 30s;
+  animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: initial;
   animation-direction: initial; 
@@ -42,14 +42,14 @@ body {
   height          : 50px;
   background      : #32CD32;
   animation-name  : borderVert, colorChange;
-  animation-duration: 30s;
+  animation-duration: 5s;
   animation-timing-function: linear;
   animation-iteration-count: initial;
   animation-direction: initial; 
   position        : absolute;
 }
 @keyframes borderVert {
-  from {height: 50%;}
+  from {height: 46%;}
   to   {height: 0%;}
 }
 
