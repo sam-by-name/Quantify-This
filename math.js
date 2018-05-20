@@ -82,7 +82,7 @@ tempNum = ans;                                       // tempNum gets a so math c
 let points = 0;
 let lives = 10;
 let round = -1;
-let timeLeft = 5;
+let timeLeft = 20;
 let question;
 let answer;
 let clock;
@@ -213,8 +213,7 @@ function roundCount() {
   document.getElementById('round').innerHTML = round;
 }
 function timer() {
-  let time = document.getElementById('roundTimer');
-  time.innerHTML = timeLeft;
+  document.getElementById('roundTimer').innerHTML = timeLeft;
 }
 
 let squareRoot  = "What is the square root of";
