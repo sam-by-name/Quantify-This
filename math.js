@@ -114,7 +114,7 @@ function randomQs() {
 ///////////////////////////
 function showStart() {
   clearInterval(clock);
-  countDown(30, -1);
+  countDown(5, -1);
   scoreBoard();
   nextRound();
 }
@@ -184,9 +184,10 @@ function failure() {
     document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">';
     countDown(5, 3);  
   } else if (lives == 1) {
+    clearInterval(clock);
     lives -= 1;
     scoreBoard(); 
-    gameOver();
+    gameOver();    
   }
 }
 
