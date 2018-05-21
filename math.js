@@ -83,6 +83,7 @@ let points = 0;
 let lives = 10;
 let round = -1;
 let timeLeft = 5;
+let skips = 3;
 let questionPool;
 let qNA;
 let question;
@@ -120,6 +121,13 @@ function showStart() {
   timeBorders();
 }
 
+function nextRound () {
+  let element = document.getElementById('quiz');
+  question = qNA[0].q;
+  answer   = qNA[0].a;
+  qNA.shift();
+  element.innerHTML = question;              
+}
 
 function countDown () {
   timeLeft = 5;
@@ -140,11 +148,17 @@ function scoreBoard() {
   round += 1;
   roundCount(); 
   livesLeft(); 
+  skipsLeft()
   timer();
   reset();
 }
 
-
+function skip () {
+  if (skips > 0) {
+    skips --;
+    showStart();
+  } else { return }
+}
 
 //////////////// ANSWER ////////////////////////
 function theAnswer() {
@@ -155,11 +169,9 @@ function theAnswer() {
   }
 }
 
-
 function success () {
   points += 50; showStart();
 }
-
 
 function failure() {
   points -= 10; 
@@ -173,7 +185,6 @@ function failure() {
   }
 }
 
-
 function gameOver () {
   document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
    "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing";
@@ -182,7 +193,7 @@ function gameOver () {
   element1.onclick = function(){showStart()};
   quiz.appendChild(element1);
 }
-////////////////////////////////////////////////////////////
+/////////////////  Time Boarders ///////////////////////////
 
 function removeBorders () {
   document.getElementById('timer1').classList.remove("timer1");
@@ -196,15 +207,6 @@ function timeBorders () {
   document.getElementById('timer3').classList.add("timer1");
   document.getElementById('timer4').classList.add("timer2");
 }
-
-function nextRound () {
-  let element = document.getElementById('quiz');
-  question = qNA[0].q;
-  answer   = qNA[0].a;
-  qNA.shift();
-  element.innerHTML = question;               /*innerHTML = variable of a random index from set 2 */
-}
-
 
 const htmlString = "The aim of the game is to use the calculator to a the qs correctly as quick \
 as you can.\<br>\
@@ -227,6 +229,9 @@ function roundCount() {
 }
 function timer() {
   document.getElementById('roundTimer').innerHTML = timeLeft;
+}
+function skipsLeft() {
+  document.getElementById('skips').innerHTML = skips;
 }
 
 let squareRoot  = "What is the square root of";
