@@ -5,18 +5,19 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Quantify This</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="math.css" />
-  
+  <link rel="stylesheet" type="text/css" media="screen" href="math.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
 </head>
 <body onload="intro()">
-  <div class="hud">
-    <div id="round" value""></div>
-    <div id="roundTimer" value=""></div>
-    <div id="livesLeft" value=""></div>
-    <div id="score" value=""></div>    
+  <div class="row">
+    <div class="col-2 hud">Round<br><a id="round" value""></a></div>
+    <div class="col-2 hud">Time<br> <a id="roundTimer" value=""></a></div>
+    <div class="col-4"></div> 
+    <div class="col-2 hud">Lives<br><a id="livesLeft" value=""></a></div>
+    <div class="col-2 hud">Score<br><a id="score" value=""></a></div>    
   </div>
+  <div><h1>Quantify This</h1></div>
 
-  <h1>Quantify This</h1>
 
   <div class="decorCont"> <!-- holds animations?-->
     <div class="tR" id="timer1"></div>
@@ -24,52 +25,58 @@
     <div class="bL" id="timer3"></div>
     <div class="tL" id="timer4"></div>
 
-    <div class="innerCont" id="quiz"> <!-- holds title and questions-->
+    <div class="row innerCont" id="quiz"> <!-- holds title and questions-->
     </div>
   </div>
 
   <!--//////////////         Calculator         ///////////-->
-  <div class="calcCont"> 
-    <div>
+  <div class="row calcCont"> 
+    <div class="col-1"></div>
+    <div class="col-10">
       <input class="display" id="amount" type="text" placeholder="0" disabled="disabled">
     </div>
-    <div class="row1Btns">
+    <div class="col-1"></div>
+    <div class="col-2"></div>
+
+    <div class="col-8 rowBtns">
       <button onclick="numBtns(7)">7</button>
       <button onclick="numBtns(8)" class="noSpace">8</button>
       <button onclick="numBtns(9)">9</button>
       <button onclick="minusBtn('-')">-</button>
-      
     </div>
-    <div class="row2Btns">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-8 rowBtns">
       <button onclick="numBtns(4)">4</button> 
       <button onclick="numBtns(5)" class="noSpace">5</button> 
       <button onclick="numBtns(6)">6</button> 
       <button onclick="opBtns('+')">+</button>
     </div>
-    <div class="row3Btns">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-8 rowBtns">
       <button onclick="numBtns(1)">1</button>     
       <button onclick="numBtns(2)" class="noSpace">2</button>     
       <button onclick="numBtns(3)">3</button>     
       <button onclick="opBtns('÷')">÷</button>
     </div>
-    <div class="row4Btns">
+    <div class="col-2"></div>
+    <div class="col-2"></div>
+    <div class="col-8 rowBtns">
       <button onclick="delOne()" class="delBtn">Del</button>
       <button onclick="numBtns(0)" class="noSpace">0</button>        
       <button onclick="decimalBtn('.')">.</button>
       <button onclick="opBtns('×')" class="multi">×</button>  
-       
-    </div>          
-    <div class="row5Btns">
+    </div>  
+    <div class="col-2"></div>  
+    <div class="col-2"></div>      
+    <div class="col-8 row5Btns">
       <button onclick="reset()" class="clearBtn">Clear</button>
       <button onclick="theAnswer()" class="answer">Answer</button>
-      <button onclick="equals()" class="equals">=</button> 
-      <button onclick="showStart()" class="teeHee">Ruse</button>      
+      <button onclick="equals()" class="equals">=</button>    
     </div>
+    <div class="col-2"><button onclick="skip()" class="skip">Skip</button> </div>   
   </div>
   <script src="math.js"></script>    
 </body>
 
-<!-- 
-
-  <button onclick="percentageBtn('%')">%</button>
--->
