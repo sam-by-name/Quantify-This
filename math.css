@@ -17,7 +17,7 @@ body {
 
   background      : #32CD32;
   animation-name  : borderHori, colorChange;
-  animation-duration: 5s;
+  animation-duration: 30s;
   animation-timing-function: linear;
   animation-iteration-count: initial;
   animation-direction: initial; 
@@ -44,7 +44,7 @@ body {
 .timer2 {
   background      : #32CD32;
   animation-name  : borderVert, colorConfusion;
-  animation-duration: 5s;
+  animation-duration: 30s;
   animation-timing-function: linear;
   animation-iteration-count: initial;
   animation-direction: initial; 

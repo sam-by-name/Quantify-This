@@ -80,7 +80,7 @@ tempNum = ans;                                       // tempNum gets a so math c
 let points = 0;         // Total score counter
 let lives = 10;         // Lives left counter
 let round = -1;         // Round counter
-let timeLeft = 5;       // Time .. left ... counter?
+let timeLeft = 30;       // Time .. left ... counter?
 let skips = 3;          // Skips left
 let questionPool;       // Variable that holds all the the questions ... and answers :D
 let qNA;                // Randomized clone of the original questionPool
@@ -114,7 +114,7 @@ function randomQs() {
 ///////////////////////////
 function showStart() {
   clearInterval(clock);
-  countDown(5);
+  countDown(30, -1);
   scoreBoard();
   nextRound();
 }
@@ -127,15 +127,17 @@ function nextRound () {
   element.innerHTML = question;              
 }
 
-function countDown (a) {
+function countDown (a, b) {
   timeLeft = a;
   clock = setInterval (function () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
-    if (timeLeft === 0) {
+    if (timeLeft === b) {
       clearInterval(clock); 
-      failure();           
-    } 
+      showStart();           
+    } else if (timeLeft === 0) {
+      failure();
+    }
   },1000);
 }
 
@@ -168,15 +170,19 @@ function theAnswer() {
 
 function success () {
   points += 50; 
-  clock(2)     // not done yet
-  showStart();
+  clearInterval(clock);
+  document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">';
+  countDown(5, 2);     // not done yet
+
 }
 
 function failure() {
   points -= 10; 
   if (lives > 1) {
     lives -= 1;
-    showStart();
+    clearInterval(clock);
+    document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">';
+    countDown(5, 3);  
   } else if (lives == 1) {
     lives -= 1;
     scoreBoard(); 
