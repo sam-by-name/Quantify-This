@@ -139,7 +139,6 @@ function countDown (a) {
   },1000);
 }
 
-
 function scoreBoard() {
   document.getElementById('score').innerHTML = points;
   round += 1;
@@ -237,21 +236,6 @@ You have X lives, run out and your current score will be your final score.\<br>\
 X amount of rounds and then a bonus/boss round, with more time and points at stake.\<br>\<br>\
 "
 
-/*function scoreTot() {
-  document.getElementById('score').innerHTML = points;
-}
-function livesLeft() {
-  document.getElementById('livesLeft').innerHTML = lives;
-}
-function roundCount() {
-  document.getElementById('round').innerHTML = round;
-}
-function timer() {
-  document.getElementById('roundTimer').innerHTML = timeLeft;
-}
-function skipsLeft() {
-  document.getElementById('skips').innerHTML = skips;
-}*/
 
 let squareRoot  = "What is the square root of";
 let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
