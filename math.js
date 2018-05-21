@@ -117,7 +117,6 @@ function showStart() {
   countDown();
   scoreBoard();
   nextRound();
-  timeBorders();
 }
 
 function nextRound () {
@@ -142,7 +141,6 @@ function countDown () {
 
 
 function scoreBoard() {
-  //removeBorders();
   scoreTot(); 
   round += 1;
   roundCount(); 
@@ -150,6 +148,7 @@ function scoreBoard() {
   skipsLeft()
   timer();
   reset();
+  timeBorders();
 }
 
 function skip () {
@@ -209,13 +208,21 @@ function timeBorders () {
     document.getElementById('timer2').classList.toggle("timer1"); 
     document.getElementById('timer3').classList.toggle("timer2");
     document.getElementById('timer4').classList.toggle("timer1");
-  } else {
-    borderToggle++;
+    document.getElementById('timer1').classList.toggle("timer1");
+    document.getElementById('timer2').classList.toggle("timer2"); 
+    document.getElementById('timer3').classList.toggle("timer1");
+    document.getElementById('timer4').classList.toggle("timer2");    
+  } else 
+    {borderToggle++;
     document.getElementById('timer1').classList.toggle("timer1");
     document.getElementById('timer2').classList.toggle("timer2"); 
     document.getElementById('timer3').classList.toggle("timer1");
     document.getElementById('timer4').classList.toggle("timer2");
-  }
+    document.getElementById('timer1').classList.toggle("timer2");
+    document.getElementById('timer2').classList.toggle("timer1"); 
+    document.getElementById('timer3').classList.toggle("timer2");
+    document.getElementById('timer4').classList.toggle("timer1");
+  } 
 }
 
 const htmlString = "The aim of the game is to use the calculator to a the qs correctly as quick \
