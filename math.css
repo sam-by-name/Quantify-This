@@ -13,7 +13,7 @@ body {
   height          : 50%;
   width           : 100%;
 }
-.timer1 {
+.timer1, .timer2 {
   width           : 50px;
   height          : 50px;
   background      : #32CD32;
@@ -72,7 +72,9 @@ body {
 
 /*//////            Inner container            /////*/
 .innerCont {
-  padding-top     : 7.5%;
+  text-align      : center;
+  height          : 40% !important;
+  padding         : 10% 0;
   font-family     : 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; 
 }
 
@@ -80,7 +82,6 @@ body {
   width            : 25%;
   height           : 25%;
   padding          : 2% !important;
-  margin-left      : 37.5% !important; 
   background-color : yellowgreen; 
   color            : rgb(128, 128, 221) !important;
   transition       : transform 2s;
@@ -120,7 +121,7 @@ button:active {
 .display {
   margin-top      : 0 !important;
   width           : 100%;
-  height          : 100%;
+  height          : 90%;
   font-size       : 2em;
   text-align      : right;
 }

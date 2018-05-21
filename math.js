@@ -58,7 +58,7 @@ function percentageBtn (a) {                         // operator buttons functio
 
 //////////////// Equals ////////////////////////
 function equals() {    
-  z.push(tempNum);                                   // add final number to z                                       
+  z.push(tempNum);                                   // toggle final number to z                                       
   ans = Number(z[0]);                                // ans equals first index of z and changes to a number 
   for (var i = 1; i < z.length; i++) {               // loop through z
     let nextNum = Number(z[i+1])                     // nextNum equals string number from z and becomes a number
@@ -75,20 +75,19 @@ tempNum = ans;                                       // tempNum gets a so math c
 }
 
 
-
-
 //////////////////// The Game Mechanics ////////////////////////////////////
 //    Game's Global Variables    //
-let points = 0;
-let lives = 10;
-let round = -1;
-let timeLeft = 5;
-let skips = 3;
-let questionPool;
-let qNA;
-let question;
-let answer;
-let clock;
+let points = 0;         // Total score counter
+let lives = 10;         // Lives left counter
+let round = -1;         // Round counter
+let timeLeft = 5;       // Time .. left ... counter?
+let skips = 3;          // Skips left
+let questionPool;       // Variable that holds all the the questions ... and answers :D
+let qNA;                // Randomized clone of the original questionPool
+let question;           // Temporary question
+let answer;             // Temporary answer
+let clock;              // Round countdown clock
+let borderToggle = 1;   // Variable to make boarders switch their classes
 
 //////////////  INTRO  ///////////////
 function intro () {
@@ -101,10 +100,10 @@ function intro () {
   randomQs();
 }
 
-//////////////// Randomize Question Pool ///////////
+//////////////// Randomize Temporary Question Pool ///////////
 
 function randomQs() {
-  qNA = questionPool;
+  qNA = JSON.parse(JSON.stringify(questionPool));         // Learn what this awesomeness means!!!!!
   for (let i = qNA.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
@@ -143,7 +142,7 @@ function countDown () {
 
 
 function scoreBoard() {
-  removeBorders();
+  //removeBorders();
   scoreTot(); 
   round += 1;
   roundCount(); 
@@ -187,25 +186,36 @@ function failure() {
 
 function gameOver () {
   document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
-   "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing";
+   "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing \<br>\ ";
   let element1 = document.createElement("button");
   element1.innerHTML = "Again?";
-  element1.onclick = function(){showStart()};
+  element1.onclick = function(){refresh(), showStart()};
   quiz.appendChild(element1);
 }
-/////////////////  Time Boarders ///////////////////////////
 
-function removeBorders () {
-  document.getElementById('timer1').classList.remove("timer1");
-  document.getElementById('timer2').classList.remove("timer2"); 
-  document.getElementById('timer3').classList.remove("timer1");
-  document.getElementById('timer4').classList.remove("timer2");
+function refresh() {
+  points = 0;
+  lives = 10;
+  round = -1;
+  timeLeft = 5;
+  skips = 3;
+  randomQs();
 }
+/////////////////  Time Boarders ///////////////////////////
 function timeBorders () {
-  document.getElementById('timer1').classList.add("timer1");
-  document.getElementById('timer2').classList.add("timer2"); 
-  document.getElementById('timer3').classList.add("timer1");
-  document.getElementById('timer4').classList.add("timer2");
+  if (borderToggle %2 == 0) {
+    borderToggle++;
+    document.getElementById('timer1').classList.toggle("timer2");
+    document.getElementById('timer2').classList.toggle("timer1"); 
+    document.getElementById('timer3').classList.toggle("timer2");
+    document.getElementById('timer4').classList.toggle("timer1");
+  } else {
+    borderToggle++;
+    document.getElementById('timer1').classList.toggle("timer1");
+    document.getElementById('timer2').classList.toggle("timer2"); 
+    document.getElementById('timer3').classList.toggle("timer1");
+    document.getElementById('timer4').classList.toggle("timer2");
+  }
 }
 
 const htmlString = "The aim of the game is to use the calculator to a the qs correctly as quick \
