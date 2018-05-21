@@ -168,21 +168,25 @@ function theAnswer() {
   }
 }
 
+//////////////// Get It Right ////////////////////
 function success () {
   points += 50; 
   clearInterval(clock);
   document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">';
-  countDown(5, 2);     // not done yet
+  yaySound();
+  countDown(5, 2);     
 
 }
 
+//////////////// Get It Wrong ////////////////////
 function failure() {
   points -= 10; 
   if (lives > 1) {
     lives -= 1;
     clearInterval(clock);
     document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">';
-    countDown(5, 3);  
+    sadSound();
+    countDown(5, 2);  
   } else if (lives == 1) {
     clearInterval(clock);
     lives -= 1;
@@ -191,6 +195,7 @@ function failure() {
   }
 }
 
+//////////////// All Is Now Over ////////////////////
 function gameOver () {
   document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
    "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing \<br>\ ";
@@ -208,6 +213,18 @@ function refresh() {
   skips = 3;
   randomQs();
 }
+
+
+//////////// Sound Functions //////////////////////////
+function sadSound () {
+  let audio = new Audio('./sound/sad.mp3');
+  audio.play();
+}
+function yaySound () {
+  let audio = new Audio('./sound/yay.mp3');
+  audio.play();
+}
+
 /////////////////  Time Boarders ///////////////////////////
 function timeBorders () {
   if (borderToggle %2 == 0) {
