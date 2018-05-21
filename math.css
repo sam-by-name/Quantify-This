@@ -1,8 +1,8 @@
 h1 {
   text-align      : center;
-  width  : 100%;
-  color      :  rgb(236, 138, 9);
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  width           : 100%;
+  color           :  rgb(236, 138, 9);
+  font-family     : Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 body {
   margin          : 0px;
@@ -14,8 +14,7 @@ body {
   width           : 100%;
 }
 .timer1 {
-  width           : 50px;
-  height          : 50px;
+
   background      : #32CD32;
   animation-name  : borderHori, colorChange;
   animation-duration: 5s;
@@ -43,8 +42,6 @@ body {
   100% {background-color: red}
 }
 .timer2 {
-  width           : 50px;
-  height          : 50px;
   background      : #32CD32;
   animation-name  : borderVert, colorConfusion;
   animation-duration: 5s;
@@ -57,35 +54,32 @@ body {
   from {height: 46%;}
   to   {height: 0%;}
 }
-.timer3 {
-  width           : 50px;
-  height          : 50px;
-  background      : #32CD32;
-  animation-name  : borderHori, colorChange, borderVert;
-  animation-duration: 2.5s;
-  animation-timing-function: linear;
-  animation-iteration-count: 2;
-  animation-direction: initial; 
-  position        : absolute;
-}
 
 .tR {
   right           : 0;
-  transition      : width 10s;
+  width           : 50px;
+  height          : 50px;
+  border-radius   : 0 0 0 95%;
 }
 .bR {
   right           : 0;
   bottom          : 40%;
-  transition      : height 10s;
+  width           : 50px;
+  height          : 50px;
+  border-radius   : 95% 0 0 0;
 }
 .bL {
   bottom          : 40%;
   left            : 0;
-  transition      : width 10s;
+  width           : 50px;
+  height          : 50px;
+  border-radius   : 0 95% 0 0;
 }
 .tL {
   left            : 0;
-  transition      : height 10s;
+  width           : 50px;
+  height          : 50px;
+  border-radius   : 0 0 95% 0;
 }
 
 /*//////            Inner container            /////*/

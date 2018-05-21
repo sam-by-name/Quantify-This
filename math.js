@@ -114,7 +114,7 @@ function randomQs() {
 ///////////////////////////
 function showStart() {
   clearInterval(clock);
-  countDown();
+  countDown(5);
   scoreBoard();
   nextRound();
 }
@@ -127,8 +127,8 @@ function nextRound () {
   element.innerHTML = question;              
 }
 
-function countDown () {
-  timeLeft = 5;
+function countDown (a) {
+  timeLeft = a;
   clock = setInterval (function () {
     timeLeft--;
     document.getElementById('roundTimer').textContent = timeLeft;
@@ -141,12 +141,12 @@ function countDown () {
 
 
 function scoreBoard() {
-  scoreTot(); 
+  document.getElementById('score').innerHTML = points;
   round += 1;
-  roundCount(); 
-  livesLeft(); 
-  skipsLeft()
-  timer();
+  document.getElementById('round').innerHTML = round;
+  document.getElementById('livesLeft').innerHTML = lives;
+  document.getElementById('skips').innerHTML = skips;
+  document.getElementById('roundTimer').innerHTML = timeLeft;
   reset();
   timeBorders();
 }
@@ -168,7 +168,9 @@ function theAnswer() {
 }
 
 function success () {
-  points += 50; showStart();
+  points += 50; 
+  clock(2)     // not done yet
+  showStart();
 }
 
 function failure() {
@@ -178,7 +180,7 @@ function failure() {
     showStart();
   } else if (lives == 1) {
     lives -= 1;
-    scoreTot(); 
+    scoreBoard(); 
     gameOver();
   }
 }
@@ -235,7 +237,7 @@ You have X lives, run out and your current score will be your final score.\<br>\
 X amount of rounds and then a bonus/boss round, with more time and points at stake.\<br>\<br>\
 "
 
-function scoreTot() {
+/*function scoreTot() {
   document.getElementById('score').innerHTML = points;
 }
 function livesLeft() {
@@ -249,7 +251,7 @@ function timer() {
 }
 function skipsLeft() {
   document.getElementById('skips').innerHTML = skips;
-}
+}*/
 
 let squareRoot  = "What is the square root of";
 let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
