@@ -139,7 +139,6 @@ function nextRound () {
     let element = document.getElementById('quiz');
     question = qNA[0].q;
     answer   = qNA[0].a;
-    qNA.shift();
     element.innerHTML = question;   
   }           
 }
@@ -150,7 +149,6 @@ function bonusRound () {
   let element = document.getElementById('quiz');
   question = qNA2[0].q;
   answer   = qNA2[0].a;
-  qNA2.shift();
   element.innerHTML = question;  
 }
 
@@ -190,16 +188,20 @@ function skip () {
 
 //////////////// ANSWER ////////////////////////
 function theAnswer() {
-  if (tempNum == answer) {
-    success();
-  } else {
+  if ((question == qNA2[0].q) && (tempNum == answer)) {
+    success(100);
+    qNA2.shift();
+  } else if (tempNum != answer){
     failure();
+  } else {
+    success(50);
   }
 }
 
 //////////////// Get It Right ////////////////////
-function success () {
-  points += 50; 
+function success (a) {
+  points += a; 
+  qNA.shift();
   clearInterval(clock);
   document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">';
   yaySound();
@@ -210,6 +212,7 @@ function success () {
 //////////////// Get It Wrong ////////////////////
 function failure() {
   points -= 10; 
+  qNA.shift();
   if (lives > 1) {
     lives -= 1;
     clearInterval(clock);
