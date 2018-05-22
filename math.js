@@ -74,26 +74,26 @@ z = [];                                              // z gets reset
 tempNum = ans;                                       // tempNum gets a so math can continue
 }
 
+///////////////////////////////////////////////////////////////////////////////
+////////////////////   The Game Mechanics      ////////////////////////////////
+////////////////////  Game's Global Variables  ////////////////////////////////
 
-//////////////////// The Game Mechanics ////////////////////////////////////
-//    Game's Global Variables    //
-let points = 0;         // Total score counter
-let lives = 10;         // Lives left counter
-let round = -1;         // Round counter
-let timeLeft = 30;       // Time .. left ... counter?
-let skips = 3;          // Skips left
-let questionPool;       // Variable that holds all the the questions ... and answers :D
-let qNA;                // Randomized clone of the original questionPool
-let question;           // Temporary question
-let answer;             // Temporary answer
+let points = 0;                                      // Total score counter
+let lives =  5;                                      // Lives left counter
+let round = -1;                                      // Round counter
+let timeLeft = 30;                                   // Time .. left ... counter?
+let skips = 3;                                       // Skips left
+let questionPool;                                    // Holds Normal Round Q's and A's
+let qNA;                                             // Randomized clone of the original questionPool
+let bonusPool;                                       // Holds Bonus Round Q's and A's
+let qNA2;                                            // Randomized clone of the original bonusPool
+let question;                                        // Temporary question
+let answer;                                          // Temporary answer
+let clock;                                           // Round countdown clock
+let borderToggle = 1;                                // Variable to make boarders switch their classes
 
-let bonusPool;
-let qNA2;
 
-let clock;              // Round countdown clock
-let borderToggle = 1;   // Variable to make boarders switch their classes
-
-//////////////  INTRO  ///////////////
+///////////////////////        INTRO         //////////////////////////////////
 function intro () {
   document.getElementById('quiz').innerHTML = htmlString;
   let element1 = document.createElement("button");
@@ -105,35 +105,38 @@ function intro () {
   randomBonusQs();
 }
 
-//////////////// Randomize Temporary Question Pool ///////////
+const htmlString = "Answer the questions correctly before the timer runs out.\<br>\
+Correct answer = 100 points \<br>\ Wrong answer   = -50 points \<br>\
+You have 5 Lives.\<br>\ You have 3 Skips.\<br>\ Every 10 rounds = Double points round.\<br>\ Whats Your High Score? \<br>\<br>\ "
+///////////////////    Randomize Temporary Question Pools   ///////////////////
 
-function randomQs() {                    ///// clone question pool and randomize
-  qNA = JSON.parse(JSON.stringify(questionPool));         // Learn what this awesomeness means!!!!!
+function randomQs() {                                // clone question pool and randomize
+  qNA = JSON.parse(JSON.stringify(questionPool));    // Learn what this awesomeness means!!!!!
   for (let i = qNA.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
   }
 }
 
-function randomBonusQs() {                    ///// clone question pool and randomize
-  qNA2 = JSON.parse(JSON.stringify(bonusPool));         // Learn what this awesomeness means!!!!!
+function randomBonusQs() {                           // clone question pool and randomize
+  qNA2 = JSON.parse(JSON.stringify(bonusPool));      // Learn what this awesomeness means!!!!!
   for (let i = qNA2.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [qNA2[i], qNA2[j]] = [qNA2[j], qNA2[i]];
   }
 }
 
-
-///////////////////////////
+////////////////////////     Round Starting     ///////////////////////////////
 function showStart() {
   clearInterval(clock);
-  countDown(5, -1);
+  countDown(30, -1);
   scoreBoard();
   nextRound();
 }
 
+////////////////////////       Next Round       ///////////////////////////////
 function nextRound () {
-  if (round == 10) {
+  if (round %10 == 0) {
     bonusRound();
   } else {
     let element = document.getElementById('quiz');
@@ -152,6 +155,7 @@ function bonusRound () {
   element.innerHTML = question;  
 }
 
+//////////////////////         Round Timer         ////////////////////////////
 function countDown (a, b) {
   timeLeft = a;
   clock = setInterval (function () {
@@ -166,7 +170,7 @@ function countDown (a, b) {
   },1000);
 }
 
-//////////////// Scoreboard //////////////////////
+//////////////////////          Scoreboard         ////////////////////////////
 function scoreBoard() {
   document.getElementById('score').innerHTML = points;
   round += 1;
@@ -178,7 +182,7 @@ function scoreBoard() {
   timeBorders();
 }
 
-///////////////  Skip A Round ////////////////////
+//////////////////////        Skip A Round         ////////////////////////////
 function skip () {
   if (skips > 0) {
     skips --;
@@ -186,19 +190,19 @@ function skip () {
   } else { return }
 }
 
-//////////////// ANSWER ////////////////////////
+//////////////////////           ANSWER            ////////////////////////////
 function theAnswer() {
   if ((question == qNA2[0].q) && (tempNum == answer)) {
-    success(100);
+    success(200);
     qNA2.shift();
   } else if (tempNum != answer){
     failure();
   } else {
-    success(50);
+    success(100);
   }
 }
 
-//////////////// Get It Right ////////////////////
+//////////////////////         Got It Right        ////////////////////////////
 function success (a) {
   points += a; 
   qNA.shift();
@@ -209,9 +213,9 @@ function success (a) {
 
 }
 
-//////////////// Get It Wrong ////////////////////
+///////////////////////        Got It Wrong        ////////////////////////////
 function failure() {
-  points -= 10; 
+  points -= 50; 
   qNA.shift();
   if (lives > 1) {
     lives -= 1;
@@ -227,15 +231,14 @@ function failure() {
   }
 }
 
-////////////// It's a Ruse!! /////////////////////
-
+///////////////////////       It's a Ruse!!       /////////////////////////////
 function ruse() {
   if (answer == "ruse") {
-    success(75);
+    success(150);
   }
 }
 
-//////////////// All Is Now Over ////////////////////
+///////////////////////      All Is Now Over      /////////////////////////////
 function gameOver () {
   document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
    "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing \<br>\ ";
@@ -245,6 +248,7 @@ function gameOver () {
   quiz.appendChild(element1);
 }
 
+///////////////////////          Refresh          /////////////////////////////
 function refresh() {
   points = 0;
   lives = 10;
@@ -254,8 +258,7 @@ function refresh() {
   randomQs();
 }
 
-
-//////////// Sound Functions //////////////////////////
+////////////////////////      Sound Functions    //////////////////////////////
 function sadSound () {
   let audio = new Audio('./sound/sad.mp3');
   audio.play();
@@ -265,7 +268,7 @@ function yaySound () {
   audio.play();
 }
 
-/////////////////  Time Boarders ///////////////////////////
+////////////////////////      Time Boarders      //////////////////////////////
 function timeBorders () {
   if (borderToggle %2 == 0) {
     borderToggle++;
@@ -290,17 +293,8 @@ function timeBorders () {
   } 
 }
 
-const htmlString = "The aim of the game is to use the calculator to a the qs correctly as quick \
-as you can.\<br>\
-Each round has a timer, 1st round starts at 15 seconds (maybe 10)\ <br>\
-Getting the a right will get you X points \<br>\
-Getting qs wrong will deduct points \<br>\
-How quickly you a will also effect your points (quick correct a = +points) \<br>\
-You have X lives, run out and your current score will be your final score.\<br>\
-X amount of rounds and then a bonus/boss round, with more time and points at stake.\<br>\<br>\
-"
-
-
+///////////////////////////////////////////////////////////////////////////////
+////////////////////////  Questions an Answers  ///////////////////////////////
 let squareRoot  = "What is the square root of";
 let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
 
@@ -339,10 +333,5 @@ bonusPool = [
   //{q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
   {q : "How many functions did it take to display this message\
       \<br>\ from + including nextRound() onwards, no repeats", a : 11}  // If you looked here, you are both canny and a cheat Tut tut tut
-  //{q : , a : },
-  //{q : , a : },
-  //{q : , a : },
-  //{q : , a : },
-  //{q : , a : }
   ]
 
