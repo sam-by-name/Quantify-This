@@ -231,7 +231,7 @@ function failure() {
 
 function ruse() {
   if (answer == "ruse") {
-    success();
+    success(75);
   }
 }
 
@@ -337,7 +337,8 @@ bonusPool = [
   {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
   {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
   //{q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
-  {q : "How many functions did it take to display this message", a : 7} ////////// need to find correct answer to this question
+  {q : "How many functions did it take to display this message\
+      \<br>\ from + including nextRound() onwards, no repeats", a : 11}  // If you looked here, you are both canny and a cheat Tut tut tut
   //{q : , a : },
   //{q : , a : },
   //{q : , a : },

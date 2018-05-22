@@ -19,40 +19,40 @@ body {
   animation-name  : borderHori, colorChange;
   animation-duration: 30s;
   animation-timing-function: linear;
-  animation-iteration-count: initial;
-  animation-direction: initial; 
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse; 
   position        : absolute;
 }
 @keyframes borderHori {
-  from {width: 100%;}
-  to   {width: 0%;}
+  from {width: 0%;}
+  to   {width: 100%;}
 }
 @keyframes colorChange {
-  0% {background-color: lightgreen}
-  25% {background-color: darkgreen}
+  0% {background-color: red}
+  25% {background-color: darkred}
   50% {background-color: darkmagenta}
-  75% {background-color: darkred}
-  100% {background-color: red}
+  75% {background-color: darkgreen}
+  100% {background-color: lightgreen}
 }
 @keyframes colorConfusion {
-  0% {background-color: lightgreen}
-  25% {background-color: darkgreen}
+  0% {background-color: red}
+  25% {background-color: darkred}
   50% {background-color: darkmagenta}
-  75% {background-color: darkred}
-  100% {background-color: red}
+  75% {background-color: darkgreen}
+  100% {background-color: lightgreen}
 }
 .timer2 {
   background      : #32CD32;
   animation-name  : borderVert, colorConfusion;
   animation-duration: 30s;
   animation-timing-function: linear;
-  animation-iteration-count: initial;
-  animation-direction: initial; 
+  animation-iteration-count: infinite;
+  animation-direction: alternate-reverse; 
   position        : absolute;
 }
 @keyframes borderVert {
-  from {height: 46%;}
-  to   {height: 0%;}
+  from {height: 0%;}
+  to   {height: 46%;}
 }
 
 .tR {
