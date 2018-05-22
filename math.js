@@ -94,15 +94,15 @@ let borderToggle = 1;                                // Variable to make boarder
 
 
 ///////////////////////        INTRO         //////////////////////////////////
-function intro () {
-  document.getElementById('quiz').innerHTML = htmlString;
-  let element1 = document.createElement("button");
-  element1.innerHTML = " Lets Begin";
-  element1.onclick = function(){showStart()};
-  quiz.appendChild(element1);
-  scoreBoard();
-  randomQs();
-  randomBonusQs();
+function intro () {                                      // On page load 
+  document.getElementById('quiz').innerHTML = htmlString;// Opening message displayed on the screen
+  let element1 = document.createElement("button");       
+  element1.innerHTML = " Lets Begin";                    // Button gets text
+  element1.onclick = function(){showStart()};            // Button gets function to start game when pressed
+  quiz.appendChild(element1);                            // Start game button pushed to screen               
+  scoreBoard();                                          // Scoreboard update and ball running
+  randomQs();                                            // Clone and shuffle normal questions
+  randomBonusQs();                                       // Clone and shuffle bonus questions
 }
 
 const htmlString = "Answer the questions correctly before the timer runs out.\<br>\
@@ -113,8 +113,8 @@ You have 5 Lives.\<br>\ You have 3 Skips.\<br>\ Every 10 rounds = Double points 
 function randomQs() {                                // clone question pool and randomize
   qNA = JSON.parse(JSON.stringify(questionPool));    // Learn what this awesomeness means!!!!!
   for (let i = qNA.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
+    let j = Math.floor(Math.random() * (i + 1));     // I attempted to combine the two randomizers into one
+    [qNA[i], qNA[j]] = [qNA[j], qNA[i]];             // But then the cloned arrays held only empty objects
   }
 }
 
@@ -128,43 +128,43 @@ function randomBonusQs() {                           // clone question pool and 
 
 ////////////////////////     Round Starting     ///////////////////////////////
 function showStart() {
-  clearInterval(clock);
-  countDown(30, -1);
-  scoreBoard();
-  nextRound();
+  clearInterval(clock);                              // Clears the window of the counter
+  countDown(30, -1);                                 // Calls the timer and sets round time
+  scoreBoard();                                      // Calls the window updater 
+  nextRound();                                       // Calls the question and answer updater
 }
 
 ////////////////////////       Next Round       ///////////////////////////////
 function nextRound () {
-  if (round %10 == 0) {
-    bonusRound();
+  if (round %10 == 0) {                              // If round is a multiple of 10 
+    bonusRound();                                    // bonus round applies
   } else {
-    let element = document.getElementById('quiz');
-    question = qNA[0].q;
+    let element = document.getElementById('quiz');   
+    question = qNA[0].q;                             // Otherwise just gets first Q and first A
     answer   = qNA[0].a;
-    element.innerHTML = question;   
+    element.innerHTML = question;                    // Displays question to the screen
   }           
 }
 
 function bonusRound () {
-  clearInterval(clock);
-  countDown(60, -1);
-  let element = document.getElementById('quiz');
-  question = qNA2[0].q;
+  clearInterval(clock);                              // Resets timer
+  countDown(60, -1);                                 // Sets bonus round timer
+  let element = document.getElementById('quiz');     
+  question = qNA2[0].q;                              // Gets bonus round Q anf A
   answer   = qNA2[0].a;
-  element.innerHTML = question;  
+  element.innerHTML = question;                      // Displays bonus question to the screen
 }
 
 //////////////////////         Round Timer         ////////////////////////////
 function countDown (a, b) {
   timeLeft = a;
-  clock = setInterval (function () {
-    timeLeft--;
+  clock = setInterval (function () {                 // Assigns counter function to a "global" variable
+    timeLeft--;                                      // Time left - 1
     document.getElementById('roundTimer').textContent = timeLeft;
-    if (timeLeft === b) {
-      clearInterval(clock); 
-      showStart();           
-    } else if (timeLeft === 0) {
+    if (timeLeft === b) {                            // Special if just for the gif screen time
+      clearInterval(clock);                          // Clear timer
+      showStart();                                   
+    } else if (timeLeft === 0) {                     // Timer runs out lose points and nextRound
       failure();
     }
   },1000);
@@ -172,116 +172,119 @@ function countDown (a, b) {
 
 //////////////////////          Scoreboard         ////////////////////////////
 function scoreBoard() {
-  document.getElementById('score').innerHTML = points;
-  round += 1;
-  document.getElementById('round').innerHTML = round;
-  document.getElementById('livesLeft').innerHTML = lives;
-  document.getElementById('skips').innerHTML = skips;
-  document.getElementById('roundTimer').innerHTML = timeLeft;
-  reset();
-  timeBorders();
+  document.getElementById('score').innerHTML = points;       // Updates total score 
+  round += 1;                                                // Round +1
+  document.getElementById('round').innerHTML = round;        // Updates round
+  document.getElementById('livesLeft').innerHTML = lives;    // Updates lives left
+  document.getElementById('skips').innerHTML = skips;        // Updates Skips left
+  document.getElementById('roundTimer').innerHTML = timeLeft;// Updates round time left
+  reset();                                                   // Resets calculator variables
+  timeBorders();                                             // Resets border positions
 }
 
 //////////////////////        Skip A Round         ////////////////////////////
 function skip () {
-  if (skips > 0) {
-    skips --;
-    showStart();
-  } else { return }
+  if (skips > 0) {                                   // If more than 0 skips
+    skips --;                                        // skips - 1    
+    showStart();                                     // nextRound unpunished
+  } else { return }                                  // No skips left means nothing happens
 }
 
 //////////////////////           ANSWER            ////////////////////////////
 function theAnswer() {
-  if ((question == qNA2[0].q) && (tempNum == answer)) {
-    success(200);
-    qNA2.shift();
-  } else if (tempNum != answer){
-    failure();
+  if ((question == qNA2[0].q) && (tempNum == answer)) {// If its a correct answer of a bonus question
+    success(200);                                      // Extra Points, lubbly jubbly
+    qNA2.shift();                                      // Removes question that has just been asked
+  } else if (tempNum != answer){                       // Answer wrong and suffer
+    failure();                                         // Punishment is nye
   } else {
-    success(100);
+    success(100);                                      // Must be a correct answer then
   }
 }
 
 //////////////////////         Got It Right        ////////////////////////////
-function success (a) {
-  points += a; 
-  qNA.shift();
-  clearInterval(clock);
-  document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">';
-  yaySound();
-  countDown(5, 2);     
+function success (a) {                               
+  points += a;                                       // Updates points accordingly
+  qNA.shift();                                       // Removes question that had just been asked
+  clearInterval(clock);                              // Clears the timer
+  document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">'; // It's gif time
+  yaySound();                                        // Celebration sound
+  countDown(5, 2);                                   // Gif countdown timer
 
 }
 
 ///////////////////////        Got It Wrong        ////////////////////////////
 function failure() {
-  points -= 50; 
-  qNA.shift();
-  if (lives > 1) {
-    lives -= 1;
-    clearInterval(clock);
-    document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">';
-    sadSound();
-    countDown(5, 2);  
-  } else if (lives == 1) {
-    clearInterval(clock);
-    lives -= 1;
-    scoreBoard(); 
-    gameOver();    
+  points -= 50;                                      // Lose 50 points      
+  qNA.shift();                                       // removes previous question
+  if (lives > 0) {                                   // If you have lives left
+    lives -= 1;                                      // Lose one
+    clearInterval(clock);                            // Clear timer
+    document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">'; // It's gif time 
+    sadSound();                                      // Plays sad sound          
+    countDown(5, 2);                                 // special countdown timer             
+  } else if (lives == 0) {                           // If you got no lives left           
+    clearInterval(clock);                            // Clear timer         
+    scoreBoard();                                    // Update scoreboard
+    gameOver();                                      // Run game ending function
   }
 }
 
 ///////////////////////       It's a Ruse!!       /////////////////////////////
 function ruse() {
-  if (answer == "ruse") {
-    success(150);
+  if (answer == "ruse") {                            // If the question is a ruse     
+    success(150);                                    // And you guessed so, extra points
   }
 }
 
 ///////////////////////      All Is Now Over      /////////////////////////////
 function gameOver () {
-  document.getElementById('quiz').innerHTML = "GAME OVER!!! \<br>\ Your final score is\
-   "+ points +"\<br>\ Lets be honest you gave it your best shot and no one is blaming you for failing ...\<br>\ but they are laughing \<br>\ ";
-  let element1 = document.createElement("button");
-  element1.innerHTML = "Again?";
+  document.getElementById('quiz').innerHTML = "GAME OVER!!!\
+    \<br>\ Your final score is\
+    "+ points +"\<br>\ Lets be honest you gave it\
+    your best shot and no one is blaming you for failing ...\
+    \<br>\ but they are laughing \<br>\ ";
+  let element1 = document.createElement("button");      // Game over message and new game button displayed
+  element1.innerHTML = "Again?";                        // Button text
   element1.onclick = function(){refresh(), showStart()};
-  quiz.appendChild(element1);
+  quiz.appendChild(element1);                           // Button assigned functions to start it all again
 }
 
 ///////////////////////          Refresh          /////////////////////////////
 function refresh() {
-  points = 0;
-  lives = 10;
-  round = -1;
-  timeLeft = 5;
-  skips = 3;
-  randomQs();
+  points = 0;                                        // Resets points
+  lives = 5;                                         // Resets lives
+  round = -1;                                        // Resets starting round   
+  timeLeft = 30;                                     // Resets Round counter
+  skips = 3;                                         // Resets skips
+  randomQs();                                        // Repopulates and reshuffles cloned normal question pool
+  randomBonusQs();                                   // Repopulates and reshuffles cloned bonus pool
 }
 
 ////////////////////////      Sound Functions    //////////////////////////////
-function sadSound () {
-  let audio = new Audio('./sound/sad.mp3');
-  audio.play();
+function sadSound () {                                                             
+  let audio = new Audio('./sound/sad.mp3');          // Assigns audio file to variable                           
+  audio.play();                                      // Plays audio (when function runs that is)
 }
 function yaySound () {
-  let audio = new Audio('./sound/yay.mp3');
-  audio.play();
+  let audio = new Audio('./sound/yay.mp3');          // Assigns audio file to variable                            
+  audio.play();                                      // Plays audio (when function runs that is)
 }
 
 ////////////////////////      Time Boarders      //////////////////////////////
 function timeBorders () {
-  if (borderToggle %2 == 0) {
-    borderToggle++;
+  if (borderToggle %2 == 0) {                        // If variable is a even number, toggle first set
+    borderToggle++;                                  // Then make variable an odd number
     document.getElementById('timer1').classList.toggle("timer2");
     document.getElementById('timer2').classList.toggle("timer1"); 
     document.getElementById('timer3').classList.toggle("timer2");
-    document.getElementById('timer4').classList.toggle("timer1");
-    document.getElementById('timer1').classList.toggle("timer1");
-    document.getElementById('timer2').classList.toggle("timer2"); 
-    document.getElementById('timer3').classList.toggle("timer1");
-    document.getElementById('timer4').classList.toggle("timer2");    
-  } else 
-    {borderToggle++;
+    document.getElementById('timer4').classList.toggle("timer1");// Get by class/s did not work so could
+    document.getElementById('timer1').classList.toggle("timer1");// not consolidate
+    document.getElementById('timer2').classList.toggle("timer2");// Begging for simpler solution
+    document.getElementById('timer3').classList.toggle("timer1");// so more could be done :D
+    document.getElementById('timer4').classList.toggle("timer2");     
+  } else                                             // If variable is a odd number, toggle second set
+    {borderToggle++;                                 // Then make variable an even number
     document.getElementById('timer1').classList.toggle("timer1");
     document.getElementById('timer2').classList.toggle("timer2"); 
     document.getElementById('timer3').classList.toggle("timer1");
@@ -295,11 +298,11 @@ function timeBorders () {
 
 ///////////////////////////////////////////////////////////////////////////////
 ////////////////////////  Questions an Answers  ///////////////////////////////
-let squareRoot  = "What is the square root of";
-let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";
+let squareRoot  = "What is the square root of";          // Globals variable solely for question array
+let numOfLet = "Example: (a - b) * c = x \<br><br>\ If ";// Globals variable solely for question array
 
-questionPool = [
-  {q : squareRoot + " 225?" , a : 15},
+questionPool = [                                         // Array of objects that hold all normal Q's and A's
+  {q : squareRoot + " 225?" , a : 15},                   // Add questions and answers in here to extend the pool
   {q : squareRoot + " 256?" , a : 16},
   {q : squareRoot + " 144?" , a : 12},
   {q : squareRoot + " 400?" , a : 20},
@@ -327,7 +330,7 @@ questionPool = [
   {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?"          , a : 1},
   {q : "How long is a piece of string?" , a : 'ruse'}
 ]
-bonusPool = [  
+bonusPool = [                                        // Array of objects that hold all bonus Q's and A's                  
   {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
   {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
   //{q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
