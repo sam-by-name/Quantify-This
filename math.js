@@ -86,6 +86,10 @@ let questionPool;       // Variable that holds all the the questions ... and ans
 let qNA;                // Randomized clone of the original questionPool
 let question;           // Temporary question
 let answer;             // Temporary answer
+
+let bonusPool;
+let qNA2;
+
 let clock;              // Round countdown clock
 let borderToggle = 1;   // Variable to make boarders switch their classes
 
@@ -98,15 +102,24 @@ function intro () {
   quiz.appendChild(element1);
   scoreBoard();
   randomQs();
+  randomBonusQs();
 }
 
 //////////////// Randomize Temporary Question Pool ///////////
 
-function randomQs() {
+function randomQs() {                    ///// clone question pool and randomize
   qNA = JSON.parse(JSON.stringify(questionPool));         // Learn what this awesomeness means!!!!!
   for (let i = qNA.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [qNA[i], qNA[j]] = [qNA[j], qNA[i]];
+  }
+}
+
+function randomBonusQs() {                    ///// clone question pool and randomize
+  qNA2 = JSON.parse(JSON.stringify(bonusPool));         // Learn what this awesomeness means!!!!!
+  for (let i = qNA2.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1));
+    [qNA2[i], qNA2[j]] = [qNA2[j], qNA2[i]];
   }
 }
 
@@ -120,11 +133,25 @@ function showStart() {
 }
 
 function nextRound () {
+  if (round == 10) {
+    bonusRound();
+  } else {
+    let element = document.getElementById('quiz');
+    question = qNA[0].q;
+    answer   = qNA[0].a;
+    qNA.shift();
+    element.innerHTML = question;   
+  }           
+}
+
+function bonusRound () {
+  clearInterval(clock);
+  countDown(60, -1);
   let element = document.getElementById('quiz');
-  question = qNA[0].q;
-  answer   = qNA[0].a;
-  qNA.shift();
-  element.innerHTML = question;              
+  question = qNA2[0].q;
+  answer   = qNA2[0].a;
+  qNA2.shift();
+  element.innerHTML = question;  
 }
 
 function countDown (a, b) {
@@ -141,6 +168,7 @@ function countDown (a, b) {
   },1000);
 }
 
+//////////////// Scoreboard //////////////////////
 function scoreBoard() {
   document.getElementById('score').innerHTML = points;
   round += 1;
@@ -152,6 +180,7 @@ function scoreBoard() {
   timeBorders();
 }
 
+///////////////  Skip A Round ////////////////////
 function skip () {
   if (skips > 0) {
     skips --;
@@ -192,6 +221,14 @@ function failure() {
     lives -= 1;
     scoreBoard(); 
     gameOver();    
+  }
+}
+
+////////////// It's a Ruse!! /////////////////////
+
+function ruse() {
+  if (answer == "ruse") {
+    success();
   }
 }
 
@@ -288,16 +325,16 @@ questionPool = [
   {q : numOfLet + "(a - b) × 5.5 = 110   \<br>\ Then a - b = ?"                , a : 20},
   {q : numOfLet + "(a - 79) × c = 210    \<br>\ What is 'a'?"                  , a : 100},
   {q : numOfLet + "(69 - b) × 9 = 540    \<br>\ What is 'b'?"                  , a : 9},
-  {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2}
+  {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2},
+  {q : "1 pile of sand + 1 pile of sand = \<br>\ How many piles of sand"       , a : 1},
+  {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?"          , a : 1},
+  {q : "How long is a piece of string?" , a : 'ruse'}
 ]
-let set3 = [
-  {q : "How long is a piece of string?" , a : 'ruse'},
-  {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?" , a : 1},
-  {q : "1 pile of sand + 1 pile of sand = ?" , a : 1},
+bonusPool = [  
   {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
   {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
-  {q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
-  //{q : , a : },
+  //{q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
+  {q : "How many functions did it take to display this message", a : 7} ////////// need to find correct answer to this question
   //{q : , a : },
   //{q : , a : },
   //{q : , a : },
