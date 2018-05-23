@@ -58,20 +58,20 @@ function percentageBtn (a) {                         // operator buttons functio
 
 //////////////// Equals ////////////////////////
 function equals() {    
-  z.push(tempNum);                                   // toggle final number to z                                       
-  ans = Number(z[0]);                                // ans equals first index of z and changes to a number 
-  for (var i = 1; i < z.length; i++) {               // loop through z
-    let nextNum = Number(z[i+1])                     // nextNum equals string number from z and becomes a number
-    let op = z[i];                                   // op equals operator from z as loop goes through it
-    if (op === '+') { ans += nextNum; }              // if op is a plus string, a gets nextNum added to it
-    else if (op === '-') { ans -= nextNum; }         // if op is a minus string, a gets nextNum taken from it to it
-    else if (op === '×') { ans *= nextNum; }         // || || .. ect except for times
-    else if (op === '÷') { ans /= nextNum; }         // || || .. ect except for divide
-    i++;                                             // iterate
+  z.push(tempNum);                                             // toggle final number to z                                       
+  ans = Number(z[0]);                                          // ans equals first index of z and changes to a number 
+  for (var i = 1; i < z.length; i++) {                         // loop through z
+    let nextNum = Number(z[i+1])                               // nextNum equals string number from z and becomes a number
+    let op = z[i];                                             // op equals operator from z as loop goes through it // now counts operators as well
+    if      (op === '+') {(ans += nextNum) && (numOfOps += 1); }// if op is a plus string, a gets nextNum added to it
+    else if (op === '-') {(ans -= nextNum) && (numOfOps += 1); }// if op is a minus string, a gets nextNum taken from it to it
+    else if (op === '×') {(ans *= nextNum) && (numOfOps += 1); }// || || .. ect except for times
+    else if (op === '÷') {(ans /= nextNum) && (numOfOps += 1); }// || || .. ect except for divide
+    i++;                                                       // iterate
   }
-document.getElementById("amount").value = ans;       // display a
-z = [];                                              // z gets reset
-tempNum = ans;                                       // tempNum gets a so math can continue
+document.getElementById("amount").value = ans;                 // display a
+z = [];                                                        // z gets reset
+tempNum = ans;                                                 // tempNum gets a so math can continue
 }
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -92,6 +92,7 @@ let answer;                                          // Temporary answer
 let clock;                                           // Round countdown clock
 let borderToggle = 1;                                // Variable to make boarders switch their classes
 let mysteryNum = 0; 
+let numOfOps = 0;
 
 
 ///////////////////////        INTRO         //////////////////////////////////
@@ -110,7 +111,6 @@ const htmlString = "Answer the questions correctly before the timer runs out.\<b
 Correct answer = 100 points \<br>\ Wrong answer   = -50 points \<br>\
 You have 5 Lives.\<br>\ You have 3 Skips.\<br>\ Every 10 rounds = Double points round.\<br>\ Whats Your High Score? \<br>\<br>\ "
 ///////////////////    Randomize Temporary Question Pools   ///////////////////
-
 function randomQs() {                                // clone question pool and randomize
   qNA = JSON.parse(JSON.stringify(questionPool));    // Learn what this awesomeness means!!!!!
   for (let i = qNA.length - 1; i > 0; i--) {
@@ -151,15 +151,25 @@ function nextRound () {
   }           
 }
 
+////////////////////////     Random Questions     /////////////////////////////
 function qGenerator () {
   let element = document.getElementById('quiz');
   clearInterval(clock);  
   countDown(45, -1);  
   mysteryNum = Math.floor((Math.random() * 1000) +1);
   question = "Your answer should be an equation\
-    that would reach exactly\<br>\ " + mysteryNum + "\<br>\
-    using any 3 math operators";  
-    element.innerHTML = question
+    this equation will reach exactly\<br>\ " + mysteryNum + " \<br>\
+    not " +(mysteryNum +1) + " and not " + (mysteryNum -1) +"\
+     you must use any precisely 3 math operators";  
+  element.innerHTML = question;
+}
+
+function answerForRandom () {
+  equals();
+  if ((mysteryNum == ans) && (numOfOps === 3)) {
+    success(150);
+  } else { failure();
+  }
 }
 
 function bonusRound () {
@@ -211,6 +221,8 @@ function theAnswer() {
   if (tempNum == qNA2[0].a) {                       // If its a correct answer of a bonus question
     success(200);                                    // Extra Points, lubbly jubbly
     qNA2.shift();                                    // Removes question that has just been asked
+  } else if (z.length != 0) {
+    answerForRandom ();
   } else if (tempNum != answer){                     // Answer wrong and suffer
     failure();                                       // Punishment is nye
   } else {

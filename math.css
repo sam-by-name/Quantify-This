@@ -1,3 +1,28 @@
+@media only screen and (max-width: 470px) {
+  .innerCont button {     
+    width          : 40% !important;
+  }
+  .calcCont {
+    padding          : 0 5% !important;
+  }
+}
+@media only screen and (min-width: 800px) {
+  .innerCont button {     
+    width            : 20% !important;
+  }
+  .calcCont {
+    padding          : 0 20% !important;
+  }
+}
+@media only screen and (min-width: 1080px) {
+  .innerCont button {     
+    width            : 20% !important;
+  }
+  .calcCont {
+    padding          : 0 30% !important;
+  }
+}
+
 body {
   background         : url("./gif/background.jpg");
   background-position: top;
@@ -18,11 +43,12 @@ body {
   width           : 50px !important;
 }
 .hud a {
-  color           : white !important;
+  color           : rgb(255, 255, 255) !important;
 }
 
 h1 {
   padding-top     : 5px !important;
+  color           : rgb(0, 245, 253) !important;
   font-family     : 'Courier New', Courier, monospace;
   font-size       : 92px;
   text-align      : center;
@@ -129,7 +155,7 @@ h1.elegantShadow {
 /*//////            Inner container            /////*/
 .innerCont {
   text-align      : center;
-  margin          : 150px auto;
+  margin          : 120px auto;
   color           : white;
   font-family     : 'Yatra One', cursive;
 }
