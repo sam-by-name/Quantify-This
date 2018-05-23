@@ -1,3 +1,5 @@
+
+
 /* ////////// Time Round Lives Score //////////////////// */
 .hud {
   background-color: black;
@@ -13,11 +15,12 @@
 }
 
 h1 {
-  font-family: 'Courier New', Courier, monospace;
-  font-size: 92px;
-  text-align: center;
-  text-transform: uppercase;
-  text-rendering: optimizeLegibility;
+  margin-top      : 5px !important;
+  font-family     : 'Courier New', Courier, monospace;
+  font-size       : 92px;
+  text-align      : center;
+  text-transform  : uppercase;
+  text-rendering  : optimizeLegibility;
 } 
 h1.elegantShadow {
   color: #131313;
@@ -43,9 +46,8 @@ h1.elegantShadow {
 /*//////            Decor container               /////*/
 .decorCont {
   position        : absolute;
-  top             : 10%;
+  top             : 125px;
   width           : 100%;
-  height          : 80%;
   bottom          : 40%;
 }
 .timer1 {
@@ -59,7 +61,7 @@ h1.elegantShadow {
 }
 @keyframes borderHori {
   from {width: 0%;}
-  to   {width: 110%;}
+  to   {width: 100%;}
 }
 @keyframes colorChange {
   0% {background-color: red}
@@ -80,7 +82,7 @@ h1.elegantShadow {
 }
 @keyframes borderVert {
   from {height: 0%;}
-  to   {height: 60%;}
+  to   {height: 100%;}
 }
 @keyframes colorConfusion {
   0% {background-color: red}
@@ -98,13 +100,13 @@ h1.elegantShadow {
 }
 .bR {
   right           : 0;
-  bottom          : 37.5%;
+  bottom          : 0;
   width           : 50px;
   height          : 50px;
   border-radius   : 95% 0 0 0;
 }
 .bL {
-  bottom          : 37.5%;
+  bottom          : 0;
   left            : 0;
   width           : 50px;
   height          : 50px;
@@ -139,7 +141,7 @@ h1.elegantShadow {
 /*//////            Bottom container            /////*/
 .calcCont {
   height          : 40%;
-  padding         : 0 20% 0 20%;
+  padding         : 0 10% 0 10%;
   margin          : 0;
   background-color: rgb(71, 71, 71);
   bottom          : 0;
