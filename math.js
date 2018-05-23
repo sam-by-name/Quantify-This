@@ -138,6 +138,8 @@ function showStart() {
 function nextRound () {
   if (round %10 == 0) {                              // If round is a multiple of 10 
     bonusRound();                                    // bonus round applies
+  } else if ((qNA.length == 0) && (qNA.length == 0)) {
+    gameOver(youWin);
   } else {
     let element = document.getElementById('quiz');   
     question = qNA[0].q;                             // Otherwise just gets first Q and first A
@@ -192,13 +194,13 @@ function skip () {
 
 //////////////////////           ANSWER            ////////////////////////////
 function theAnswer() {
-  if ((question == qNA2[0].q) && (tempNum == answer)) {// If its a correct answer of a bonus question
-    success(200);                                      // Extra Points, lubbly jubbly
-    qNA2.shift();                                      // Removes question that has just been asked
-  } else if (tempNum != answer){                       // Answer wrong and suffer
-    failure();                                         // Punishment is nye
+  if (question == qNA2[0].q) {                       // If its a correct answer of a bonus question
+    success(200);                                    // Extra Points, lubbly jubbly
+    qNA2.shift();                                    // Removes question that has just been asked
+  } else if (tempNum != answer){                     // Answer wrong and suffer
+    failure();                                       // Punishment is nye
   } else {
-    success(100);                                      // Must be a correct answer then
+    success(100);                                    // Must be a correct answer then
   }
 }
 
@@ -207,7 +209,8 @@ function success (a) {
   points += a;                                       // Updates points accordingly
   qNA.shift();                                       // Removes question that had just been asked
   clearInterval(clock);                              // Clears the timer
-  document.getElementById('quiz').innerHTML = '<img src="./gif/scoreOne.gif">'; // It's gif time
+  document.getElementById('quiz').innerHTML = '\
+  <img src="./gif/scoreOne.gif">';                   // It's gif time
   yaySound();                                        // Celebration sound
   countDown(5, 2);                                   // Gif countdown timer
 
@@ -216,17 +219,19 @@ function success (a) {
 ///////////////////////        Got It Wrong        ////////////////////////////
 function failure() {
   points -= 50;                                      // Lose 50 points      
-  qNA.shift();                                       // removes previous question
+  let wrong = qNA.shift();                           // removes previous question and
+  qNA.push(wrong);
   if (lives > 0) {                                   // If you have lives left
     lives -= 1;                                      // Lose one
     clearInterval(clock);                            // Clear timer
-    document.getElementById('quiz').innerHTML = '<img src="./gif/loseAPoint.gif">'; // It's gif time 
+    document.getElementById('quiz').innerHTML = '\
+    <img src="./gif/loseAPoint.gif">';               // It's gif time 
     sadSound();                                      // Plays sad sound          
     countDown(5, 2);                                 // special countdown timer             
   } else if (lives == 0) {                           // If you got no lives left           
     clearInterval(clock);                            // Clear timer         
     scoreBoard();                                    // Update scoreboard
-    gameOver();                                      // Run game ending function
+    gameOver(youLose);                                      // Run game ending function
   }
 }
 
@@ -238,17 +243,22 @@ function ruse() {
 }
 
 ///////////////////////      All Is Now Over      /////////////////////////////
-function gameOver () {
-  document.getElementById('quiz').innerHTML = "GAME OVER!!!\
-    \<br>\ Your final score is\
-    "+ points +"\<br>\ Lets be honest you gave it\
-    your best shot and no one is blaming you for failing ...\
-    \<br>\ but they are laughing \<br>\ ";
+function gameOver (a) {
+  document.getElementById('quiz').innerHTML = a;
   let element1 = document.createElement("button");      // Game over message and new game button displayed
   element1.innerHTML = "Again?";                        // Button text
   element1.onclick = function(){refresh(), showStart()};
   quiz.appendChild(element1);                           // Button assigned functions to start it all again
+  round += 1;                                           // To make sure round 1 is intact round 1 upon restart
 }
+
+const youLose =  "GAME OVER!!!\<br>\ Your final score is " + points +"\
+  \<br>\ Lets be honest you gave it\
+  your best shot and no one is blaming you for failing ...\
+  \<br>\ but they are laughing \<br>\ ";
+const youWin = "Congratulations!!!\<br>\ Your final score is " +points + "\
+  \<br>\ Well done you reached the end of the test\
+  \<br>\ But did you do better than your peers? \<br>\ ";
 
 ///////////////////////          Refresh          /////////////////////////////
 function refresh() {
