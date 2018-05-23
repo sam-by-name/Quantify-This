@@ -91,7 +91,8 @@ let question;                                        // Temporary question
 let answer;                                          // Temporary answer
 let clock;                                           // Round countdown clock
 let borderToggle = 1;                                // Variable to make boarders switch their classes
-let mysteryNum = 0; 
+let mysteryNum = 0;
+let mysteryOp = 0;  
 let numOfOps = 0;
 
 
@@ -157,16 +158,17 @@ function qGenerator () {
   clearInterval(clock);  
   countDown(45, -1);  
   mysteryNum = Math.floor((Math.random() * 1000) +1);
-  question = "Your answer should be an equation\
-    this equation will reach exactly\<br>\ " + mysteryNum + " \<br>\
-    not " +(mysteryNum +1) + " and not " + (mysteryNum -1) +"\
-     you must use any precisely 3 math operators";  
+  mysteryOp = Math.floor((Math.random() * 5) +1);
+  question = "Your answer should be an equation. \
+    This equation will reach exactly\<br>\ " + mysteryNum + " \<br>\
+    Not " +(mysteryNum +1) + "\<br>\ and not " + (mysteryNum -1) +"\<br>\
+     you must use precisely " + mysteryOp + " math operators";  
   element.innerHTML = question;
 }
 
 function answerForRandom () {
   equals();
-  if ((mysteryNum == ans) && (numOfOps === 3)) {
+  if ((mysteryNum == ans) && (numOfOps === mysteryOp)) {
     success(150);
   } else { failure();
   }
@@ -296,6 +298,9 @@ function refresh() {
   skips = 3;                                         // Resets skips
   randomQs();                                        // Repopulates and reshuffles cloned normal question pool
   randomBonusQs();                                   // Repopulates and reshuffles cloned bonus pool
+  mysteryNum = 0;
+  mysteryOp  = 0;
+  numOfOps   = 0;
 }
 
 ////////////////////////      Sound Functions    //////////////////////////////
