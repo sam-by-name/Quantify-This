@@ -256,7 +256,8 @@ const youLose =  "GAME OVER!!!\<br>\ Your final score is " + points +"\
   \<br>\ Lets be honest you gave it\
   your best shot and no one is blaming you for failing ...\
   \<br>\ but they are laughing \<br>\ ";
-const youWin = "Congratulations!!!\<br>\ Your final score is " +points + "\
+const youWin = "<img src=\"./gif/sillyDance.gif\">\<br>\
+Congratulations!!!\<br>\ Your final score is " +points + "\
   \<br>\ Well done you reached the end of the test\
   \<br>\ But did you do better than your peers? \<br>\ ";
 
