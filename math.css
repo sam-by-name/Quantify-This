@@ -1,4 +1,10 @@
+body {
+  background         : url("./gif/background.jpg");
+  background-position: top;
+  padding            : 0 !important;
+  margin             : 0 !important;
 
+}
 
 /* ////////// Time Round Lives Score //////////////////// */
 .hud {
@@ -9,13 +15,14 @@
   border          : 1px solid black;
   border-radius   : 10%;
   line-height     : .9;
+  width           : 50px !important;
 }
 .hud a {
   color           : white !important;
 }
 
 h1 {
-  margin-top      : 5px !important;
+  padding-top     : 5px !important;
   font-family     : 'Courier New', Courier, monospace;
   font-size       : 92px;
   text-align      : center;
@@ -24,7 +31,6 @@ h1 {
 } 
 h1.elegantShadow {
   color: #131313;
-  background-color: #ffffff;
   letter-spacing  : .15em;
   text-shadow     : 1px -1px  0   #767676, 
                    -1px  2px  1px #737272, 
@@ -44,6 +50,7 @@ h1.elegantShadow {
 }
 
 /*//////            Decor container               /////*/
+
 .decorCont {
   position        : absolute;
   top             : 125px;
@@ -123,6 +130,7 @@ h1.elegantShadow {
 .innerCont {
   text-align      : center;
   margin          : 150px auto;
+  color           : white;
   font-family     : 'Yatra One', cursive;
 }
 
@@ -143,7 +151,8 @@ h1.elegantShadow {
   height          : 40%;
   padding         : 0 10% 0 10%;
   margin          : 0;
-  background-color: rgb(71, 71, 71);
+  background      : url("./gif/math.jpg");
+  background-position: bottom;
   bottom          : 0;
   left            : 0;
   right           : 0;
