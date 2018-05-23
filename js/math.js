@@ -157,9 +157,10 @@ function qGenerator () {
   let element = document.getElementById('quiz');
   clearInterval(clock);  
   countDown(45, -1);  
+  numOfOps   = 0;
   mysteryNum = Math.floor((Math.random() * 1000) +1);
-  mysteryOp = Math.floor((Math.random() * 5) +1);
-  question = "Your answer should be an equation. \
+  mysteryOp  = Math.floor((Math.random() * 5) +1);
+  question   = "Your answer should be an equation. \
     This equation will reach exactly\<br>\ " + mysteryNum + " \<br>\
     Not " +(mysteryNum +1) + "\<br>\ and not " + (mysteryNum -1) +"\<br>\
      you must use precisely " + mysteryOp + " math operators";  
@@ -173,7 +174,7 @@ function answerForRandom () {
   } else { failure();
   }
 }
-
+////////////////////    Bonus Round Every 10 rounds   /////////////////////////
 function bonusRound () {
   clearInterval(clock);                              // Resets timer
   countDown(60, -1);                                 // Sets bonus round timer
@@ -220,7 +221,7 @@ function skip () {
 
 //////////////////////           ANSWER            ////////////////////////////
 function theAnswer() {
-  if (tempNum == qNA2[0].a) {                       // If its a correct answer of a bonus question
+  if (tempNum == qNA2[0].a) {                        // If its a correct answer of a bonus question
     success(200);                                    // Extra Points, lubbly jubbly
     qNA2.shift();                                    // Removes question that has just been asked
   } else if (z.length != 0) {
@@ -291,16 +292,14 @@ Congratulations!!!\<br>\ Your final score is " +points + "\
 
 ///////////////////////          Refresh          /////////////////////////////
 function refresh() {
-  points = 0;                                        // Resets points
-  lives = 5;                                         // Resets lives
-  round = -1;                                        // Resets starting round   
+  points   = 0;                                      // Resets points
+  lives    = 5;                                      // Resets lives
+  round    = -1;                                     // Resets starting round   
   timeLeft = 30;                                     // Resets Round counter
-  skips = 3;                                         // Resets skips
+  skips    = 3;                                      // Resets skips
+  numOfOps = 0;                                      // Resets ops counter
   randomQs();                                        // Repopulates and reshuffles cloned normal question pool
   randomBonusQs();                                   // Repopulates and reshuffles cloned bonus pool
-  mysteryNum = 0;
-  mysteryOp  = 0;
-  numOfOps   = 0;
 }
 
 ////////////////////////      Sound Functions    //////////////////////////////
