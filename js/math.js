@@ -91,6 +91,7 @@ let question;                                        // Temporary question
 let answer;                                          // Temporary answer
 let clock;                                           // Round countdown clock
 let borderToggle = 1;                                // Variable to make boarders switch their classes
+let mysteryNum = 0; 
 
 
 ///////////////////////        INTRO         //////////////////////////////////
@@ -119,7 +120,7 @@ function randomQs() {                                // clone question pool and 
 }
 
 function randomBonusQs() {                           // clone question pool and randomize
-  qNA2 = JSON.parse(JSON.stringify(bonusPool));      // Learn what this awesomeness means!!!!!
+  qNA2 = JSON.parse(JSON.stringify(bonusPool));      
   for (let i = qNA2.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [qNA2[i], qNA2[j]] = [qNA2[j], qNA2[i]];
@@ -140,12 +141,25 @@ function nextRound () {
     bonusRound();                                    // bonus round applies
   } else if ((qNA.length == 0) && (qNA.length == 0)) {
     gameOver(youWin);
-  } else {
+  } else if (round %3 == 0) {
+    qGenerator();
+  }else {
     let element = document.getElementById('quiz');   
     question = qNA[0].q;                             // Otherwise just gets first Q and first A
     answer   = qNA[0].a;
     element.innerHTML = question;                    // Displays question to the screen
   }           
+}
+
+function qGenerator () {
+  let element = document.getElementById('quiz');
+  clearInterval(clock);  
+  countDown(45, -1);  
+  mysteryNum = Math.floor((Math.random() * 1000) +1);
+  question = "Your answer should be an equation\
+    that would reach exactly\<br>\ " + mysteryNum + "\<br>\
+    using any 3 math operators";  
+    element.innerHTML = question
 }
 
 function bonusRound () {
@@ -194,7 +208,7 @@ function skip () {
 
 //////////////////////           ANSWER            ////////////////////////////
 function theAnswer() {
-  if (question == qNA2[0].q) {                       // If its a correct answer of a bonus question
+  if (tempNum == qNA2[0].a) {                       // If its a correct answer of a bonus question
     success(200);                                    // Extra Points, lubbly jubbly
     qNA2.shift();                                    // Removes question that has just been asked
   } else if (tempNum != answer){                     // Answer wrong and suffer
@@ -239,7 +253,7 @@ function failure() {
 function ruse() {
   if (answer == "ruse") {                            // If the question is a ruse     
     success(150);                                    // And you guessed so, extra points
-  }
+  } else {failure();}
 }
 
 ///////////////////////      All Is Now Over      /////////////////////////////
