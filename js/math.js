@@ -92,9 +92,9 @@ let question;                                        // Temporary question
 let answer;                                          // Temporary answer
 let clock;                                           // Round countdown clock
 let borderToggle = 1;                                // Variable to make boarders switch their classes
-let mysteryNum = 0;
-let mysteryOp = 0;  
-let numOfOps = 0;
+let mysteryNum = 0;                                  // Holds randomly created number
+let mysteryOp = 0;                                   // Holds randomly created number of operators to be used
+let numOfOps = 0;                                    // Holds number of operators used
 
 
 ///////////////////////        INTRO         //////////////////////////////////
@@ -107,6 +107,7 @@ function intro () {                                      // On page load
   scoreBoard();                                          // Scoreboard update and ball running
   randomQs();                                            // Clone and shuffle normal questions
   randomBonusQs();                                       // Clone and shuffle bonus questions
+  mainTheme ();
 }
 
 const htmlString = "Answer the questions correctly before the timer runs out.\<br>\
@@ -141,10 +142,11 @@ function showStart() {
 function nextRound () {
   if (round %10 == 0) {                              // If round is a multiple of 10 
     bonusRound();                                    // bonus round applies
-  } else if ((qNA.length == 0) && (qNA.length == 0)) {
-    gameOver(youWin);
-  } else if (round %3 == 0) {
-    qGenerator();
+  } else if ((qNA.length == 0) && (qNA.length == 0)) {// If main pool of questions is exhausted
+    clearInterval(clock);                            // clear timer 
+    gameOver(youWin);                                // initiate gameOver()
+  } else if (round %3 == 0) {                        // If round number is a multiple of 3
+    qGenerator();                                    // Initiate varied question generator
   }else {
     let element = document.getElementById('quiz');   
     question = qNA[0].q;                             // Otherwise just gets first Q and first A
@@ -155,24 +157,24 @@ function nextRound () {
 
 ////////////////////////     Random Questions     /////////////////////////////
 function qGenerator () {
-  let element = document.getElementById('quiz');
-  clearInterval(clock);  
-  countDown(45, -1);  
-  numOfOps   = 0;
-  mysteryNum = Math.floor((Math.random() * 1000) +1);
-  mysteryOp  = Math.floor((Math.random() * 5) +1);
+  let element = document.getElementById('quiz');                                      
+  clearInterval(clock);                              // Clear timer          
+  countDown(45, -1);                                 // Set timer
+  numOfOps   = 0;                                    // Reset numOfOps variable
+  mysteryNum = Math.floor((Math.random() * 1000) +1);// Create a random number to reach
+  mysteryOp  = Math.floor((Math.random() * 5) +1);   // Create a random number of operators to use
   question   = "Your answer should be an equation. \
     This equation will reach exactly\<br>\ " + mysteryNum + " \<br>\
     Not " +(mysteryNum +1) + "\<br>\ and not " + (mysteryNum -1) +"\<br>\
-     you must use precisely " + mysteryOp + " math operators";  
-  element.innerHTML = question;
+     you must use precisely " + mysteryOp + " math operators";  // The question
+  element.innerHTML = question;                      // Push question to screen
 }
 
 function answerForRandom () {
-  equals();
-  if ((mysteryNum == ans) && (numOfOps === mysteryOp)) {
-    success(150);
-  } else { failure();
+  equals();                                             // Put equation through the calculator
+  if ((mysteryNum == ans) && (numOfOps === mysteryOp)) {// If the equation results in the same number as the answer
+    success(150);                                       // Success function and 150 points
+  } else { failure();                                   // Ya dun gun messed up
   }
 }
 ////////////////////    Bonus Round Every 10 rounds   /////////////////////////
@@ -225,8 +227,8 @@ function theAnswer() {
   if (tempNum == qNA2[0].a) {                        // If its a correct answer of a bonus question
     success(200);                                    // Extra Points, lubbly jubbly
     qNA2.shift();                                    // Removes question that has just been asked
-  } else if (z.length != 0) {
-    answerForRandom ();
+  } else if (z.length != 0) {                        // Checks to see if z array is populated       
+    answerForRandom ();                              // If it is, then the question must have been from the random generator
   } else if (tempNum != answer){                     // Answer wrong and suffer
     failure();                                       // Punishment is nye
   } else {
@@ -261,7 +263,7 @@ function failure() {
   } else if (lives == 0) {                           // If you got no lives left           
     clearInterval(clock);                            // Clear timer         
     scoreBoard();                                    // Update scoreboard
-    gameOver(youLose);                                      // Run game ending function
+    gameOver(youLose);                               // Run game ending function
   }
 }
 
@@ -311,7 +313,10 @@ function yaySound () {
   let audio = new Audio('./sound/yay.mp3');          // Assigns audio file to variable                            
   audio.play();                                      // Plays audio (when function runs that is)
 }
-
+function mainTheme () {
+  let audio = new Audio('./sound/soundtrack.mp3');   // Assigns audio file to variable                            
+  audio.play();                                      // Plays audio (when function runs that is)
+}
 ////////////////////////      Time Boarders      //////////////////////////////
 function timeBorders () {
   if (borderToggle %2 == 0) {                        // If variable is a even number, toggle first set
@@ -369,19 +374,24 @@ questionPool = [                                         // Array of objects tha
   {q : numOfLet + "(100.2 - b) × 5 = 450 \<br>\ What is 'b'?"                  , a : 10.2},
   {q : "1 pile of sand + 1 pile of sand = \<br>\ How many piles of sand"       , a : 1},
   {q : "If 'you' are me and 'I' am you. \<br>\ Then how many are we?"          , a : 1},
-  {q : "How long is a piece of string?" , a : 'ruse'}
+  {q : "Why do banks charge you for 'insufficient funds'\
+        when you don’t have enough money on your account to pay it?"           , a : 'ruse'},
+  {q : "How on earth did Boris Johnson become Foreign Secretary??"             , a : 'ruse'},
+  {q : "When do many grains of sand become a pile of sand? "                   , a : 'ruse'},
+  {q : "How long is a piece of string?"                                        , a : 'ruse'}
 ]
 bonusPool = [                                        // Array of objects that hold all bonus Q's and A's                  
   {q : "How many minutes in a week if there are 270 days\
        in a normal, 12 month year?"                                            , a : 10080},
+  {q : "I am an odd number. Take away one letter and I become\
+       even. What number am I?"                                                , a : 7},
   {q : "If an alphabet string was .split(' ').reverse()..'d\
        into an array. At what index would 'm' be stored?"                      , a : 13},
+  {q : "There is a three digit number. The second digit is\
+       four times as big as the third digit, while the \
+       first digit is three less than the second digit. What is the number? "  , a : 141},
   {q : "Sally is 54 years old and her mother is 80, how many\
        years ago was Sally’s mother three times her age?"                      , a : 41},         
   {q : "How many functions did it take to display this message\
       \<br>\ from + including nextRound() onwards, no repeats"                 , a : 11}  // If you looked here, you are both canny and a cheat Tut tut tut
   ]
-
-function alert1 () {
-  alert(youWin);
-}
