@@ -14,6 +14,7 @@ function reset() {                                   // AC button function
 function delOne() {                                  // CE button function
   let tempDisp = document.getElementById('amount').value;
   let newDisp = tempDisp.slice(0, -1);
+  tempNum = '';
   if (tempNum !== '') {                              // works on everything until it gets a percentage 
     tempNum = tempNum.slice(0, -1);                  // and because of that, (e.g: '33%' is now actually a 21.33)
   } else ((tempNum = z.pop()) && delOne());          // the 'whats being removed from the display' to 'whats   
@@ -273,7 +274,7 @@ function ruse() {
 
 ///////////////////////      All Is Now Over      /////////////////////////////
 function gameOver (a) {
-  document.getElementById('quiz').innerHTML = a;
+  document.getElementById('quiz').innerHTML = "Your final score is " +points+ a;
   let element1 = document.createElement("button");      // Game over message and new game button displayed
   element1.innerHTML = "Again?";                        // Button text
   element1.onclick = function(){refresh(), showStart()};
@@ -281,14 +282,13 @@ function gameOver (a) {
   round += 1;                                           // To make sure round 1 is intact round 1 upon restart
 }
 
-const youLose =  "GAME OVER!!!\<br>\ Your final score is " + points +"\
+const youLose =  "\<br>\ GAME OVER!!!\
   \<br>\ Lets be honest you gave it\
   your best shot and no one is blaming you for failing ...\
   \<br>\ but they are laughing \<br>\ ";
-const youWin = "<img src=\"./gif/sillyDance.gif\">\<br>\
-Congratulations!!!\<br>\ Your final score is " +points + "\
-  \<br>\ Well done you reached the end of the test\
-  \<br>\ But did you do better than your peers? \<br>\ ";
+const youWin = "\<br>\
+Congratulations!!!\<br>\ Well done! you reached the end of the test\
+  \<br>\ But did you do better than your peers? \<br>\ <img src=\"./gif/sillyDance.gif\">   ";
 
 ///////////////////////          Refresh          /////////////////////////////
 function refresh() {
@@ -372,10 +372,16 @@ questionPool = [                                         // Array of objects tha
   {q : "How long is a piece of string?" , a : 'ruse'}
 ]
 bonusPool = [                                        // Array of objects that hold all bonus Q's and A's                  
-  {q : "How many minutes in a week if there are 270 days in a normal, 12 month year?" , a : 10080},
-  {q : "If an alphabet string was .split(' ').reverse()..'d into an array. At what index would 'm' be stored?" , a : 13},
-  //{q : "Reach 69 using exactly 3 math operators" , a : 30}          // write an individual function for this type of question
+  {q : "How many minutes in a week if there are 270 days\
+       in a normal, 12 month year?"                                            , a : 10080},
+  {q : "If an alphabet string was .split(' ').reverse()..'d\
+       into an array. At what index would 'm' be stored?"                      , a : 13},
+  {q : "Sally is 54 years old and her mother is 80, how many\
+       years ago was Sally’s mother three times her age?"                      , a : 41},         
   {q : "How many functions did it take to display this message\
-      \<br>\ from + including nextRound() onwards, no repeats", a : 11}  // If you looked here, you are both canny and a cheat Tut tut tut
+      \<br>\ from + including nextRound() onwards, no repeats"                 , a : 11}  // If you looked here, you are both canny and a cheat Tut tut tut
   ]
 
+function alert1 () {
+  alert(youWin);
+}
