@@ -1,9 +1,10 @@
+
 @media only screen and (max-width: 4px) {
   .innerCont button {     
     width            : 40% !important;
   }
   .calcCont {
-    padding          : 0 5% !important;
+    padding          : 0 !important;
   }
 }
 @media only screen and (min-width: 800px) {
@@ -26,11 +27,8 @@
 body {
   background         : url("./gif/background.jpg");
   background-position: top;
-}
-
-.row {
-  margin-left        : 0 !important;
-  margin-right       : 0 !important;
+  margin             : 0 !important;
+  padding            : 0 !important;
 }
 
 /* ////////// Time Round Lives Score //////////////////// */
@@ -81,7 +79,7 @@ h1.elegantShadow {
 
 .decorCont {
   position           : absolute;
-  top                : 125px;
+  top                : 125px !important;
   width              : 100%;
   bottom             : 40%;
 }
@@ -157,14 +155,14 @@ h1.elegantShadow {
 /*//////            Inner container            /////*/
 .innerCont {
   text-align         : center;
-  margin             : 120px auto;
+  padding-top        : 100px;
   color              : white;
   font-family        : 'Yatra One', cursive;
 }
 
 .innerCont button {     
-  width              : 35%;
-  height             : 35%;
+  width              : 30%;
+  height             : 100%;
   padding            : 2% !important;
   background-color   : yellowgreen; 
   color              : rgb(128, 128, 221) !important;
@@ -177,8 +175,7 @@ h1.elegantShadow {
 /*//////            Bottom container            /////*/
 .calcCont {
   height             : 40%;
-  padding            : 0 10% 0 10%;
-  margin             : 0;
+  width              : 100%;
   background         : url("./gif/math.jpg");
   background-position: bottom;
   bottom             : 0;
@@ -186,13 +183,23 @@ h1.elegantShadow {
   right              : 0;
   position           : fixed;
 }
-button{
-  width              : 24%;
-  height             : 85%;
-  margin             : 0 0 !important;
-  padding            : 1.2% 0 1.2% 0;
+.col-md-2 {
+  padding             : 0 !important;
+
+}
+.col-md-4 {
+  padding             : 0 !important;
+}
+.row {
+  height             : 16%;
+  margin             : 0 !important;
+}
+button {
+  margin             : 0 !important;
+  width              : 90%;
+  height             : 95%;
   color              : white;
-  font-size          : 1.5em !important;
+  font-size          : 1.7em !important;
   border-radius      : 9% !important;
   border-color       : rgb(0,0,0,0) !important;
   box-shadow         :inset 0 -0.6em 1em -0.35em rgba(0,0,0,0.17),
@@ -207,27 +214,20 @@ button:active {
   background-color   : rgb(36, 6, 6) !important;
 }
 .display {
-  margin-top         : 0 !important;
+  margin             : 0 0 !important;
   width              : 100%;
-  height             : 90%;
-  font-size          : 2em;
+  height             : 100%;
+  font-size          : 2.3em;
   text-align         : right;
-}
-.noSpace {
-  margin             : 0 -3.7px 0 0 !important;
 }
 
 /* ////////////////////// Calc Rows //////////////////////// */
 .answer {
   background-color   : orange;
-  width              : 48.25% ;
+  width              : 95%;
 }
 
-.rowBtns {
-  line-height        : .9 !important;
-}
 .skip {
-  width              : 100% !important;
   background-color   : black;
 }
 

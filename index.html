@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <link rel="shortcut icon" type="image/x-icon" href="./gif/pi.png" />
+  <link rel="shortcut icon" type="image/x-icon" href="./gif/pi.png"/>
   <title>Quantify This</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" media="screen" href="math.css"/>
+  <link rel="stylesheet" type="text/css" mdia="screen" href="math.css"/>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">  
   <link href="https://fonts.googleapis.com/css?family=Yatra+One" rel="stylesheet">
 </head>
@@ -22,7 +22,7 @@
   </div>
   <h1 class="elegantShadow">Quantify This</h1>
 
-  <div class="decorCont" > <!-- holds animations?-->
+  <div class="decorCont"> <!-- holds animations?-->
     <div class="tR timer2" id="timer1"></div>
     <div class="bR timer1" id="timer2"></div>
     <div class="bL timer2" id="timer3"></div>
@@ -34,52 +34,53 @@
   </div>
 
   <!--//////////////         Calculator         ///////////-->
-  <div class="row calcCont"> 
-    <div class="col-1"></div>
-    <div class="col-10">
-      <input class="display" id="amount" type="text" placeholder="0" disabled="disabled">
+  <div class="calcCont">
+    <div class="row"> 
+      <div class="col-md-1"></div>
+      <div class="col-md-10">
+        <input class="display" id="amount" type="text" placeholder="0" disabled="disabled">
+      </div>
+      <div class="col-md-1"></div>
     </div>
-    <div class="col-1"></div>
-    <div class="col-2"></div>
-    <div class="col-8 rowBtns">
-      <button onclick="numBtns(7)">7</button>
-      <button onclick="numBtns(8)" class="noSpace">8</button>
-      <button onclick="numBtns(9)">9</button>
-      <button onclick="minusBtn('-')">-</button>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(7)">7</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(8)">8</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(9)">9</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="minusBtn('-')">-</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
     </div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-8 rowBtns">
-      <button onclick="numBtns(4)">4</button> 
-      <button onclick="numBtns(5)" class="noSpace">5</button> 
-      <button onclick="numBtns(6)">6</button> 
-      <button onclick="opBtns('+')">+</button>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(4)">4</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(5)">5</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(6)">6</button> </div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="opBtns('+')">+</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"> </div>
     </div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-8 rowBtns">
-      <button onclick="numBtns(1)">1</button>     
-      <button onclick="numBtns(2)" class="noSpace">2</button>     
-      <button onclick="numBtns(3)">3</button>     
-      <button onclick="opBtns('÷')">÷</button>
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(1)">1</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(2)">2</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(3)">3</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="opBtns('÷')">÷</button></div>       
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
     </div>
-    <div class="col-2"></div>
-    <div class="col-2"></div>
-    <div class="col-8 rowBtns">
-      <button onclick="delOne()" class="delBtn">Del</button>
-      <button onclick="numBtns(0)" class="noSpace">0</button>        
-      <button onclick="decimalBtn('.')">.</button>
-      <button onclick="opBtns('×')" class="multi">×</button>  
-    </div>  
-    <div class="col-2"></div>  
-    <div class="col-2"><button onclick="ruse()" class="skip">Ruse</button></div>      
-    <div class="col-8 row5Btns">
-      <button onclick="reset()" class="clearBtn">Clear</button>
-      <button onclick="theAnswer()" class="answer">Answer</button>
-      <button onclick="equals()" class="equals">=</button>    
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="delOne()" class="delBtn">Del</button></div> 
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="numBtns(0)">0</button></div> 
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="decimalBtn('.')">.</button></div> 
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="opBtns('×')" class="multi">×</button></div>   
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"></div>  
     </div>
-    <div class="col-2"><button onclick="skip()" class="skip">Skip</button></div>   
+    <div class="row">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="ruse()" class="skip">Ruse</button></div>      
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="reset()" class="clearBtn">Clear</button></div>
+      <div class="col-lg-4 col-md-4 col-sm-4 col-4"><button onclick="theAnswer()" class="answer">Answer</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="equals()" class="equals">=</button></div>
+      <div class="col-lg-2 col-md-2 col-sm-2 col-2"><button onclick="skip()" class="skip">Skip</button></div>   
+    </div>
   </div>
   <script src="./js/math.js"></script>  
 </body>
-
