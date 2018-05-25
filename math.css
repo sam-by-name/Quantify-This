@@ -1,5 +1,8 @@
 
 @media only screen and (max-width: 567px) {
+  .innerCont {
+    padding-top      : 60px !important;
+  }
   .innerCont button {     
     width            : 40% !important;
   }
@@ -7,7 +10,7 @@
     padding          : 0 !important;
   }
   .row {
-    margin           : 0 0 0 1.5%!important;
+    margin           : 0 0 0 2%!important;
     height           : 12.5% !important;
   }
 }

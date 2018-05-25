@@ -64,10 +64,10 @@ function equals() {
   for (var i = 1; i < z.length; i++) {                         // loop through z
     let nextNum = Number(z[i+1])                               // nextNum equals string number from z and becomes a number
     let op = z[i];                                             // op equals operator from z as loop goes through it // now counts operators as well
-    if      (op === '+') {(ans += nextNum) && (numOfOps += 1); }// if op is a plus string, a gets nextNum added to it
-    else if (op === '-') {(ans -= nextNum) && (numOfOps += 1); }// if op is a minus string, a gets nextNum taken from it to it
-    else if (op === '×') {(ans *= nextNum) && (numOfOps += 1); }// || || .. ect except for times
-    else if (op === '÷') {(ans /= nextNum) && (numOfOps += 1); }// || || .. ect except for divide
+    if      (op === '+') {(ans += nextNum) && (numOfOps += 1) }// if op is a plus string, a gets nextNum added to it
+    else if (op === '-') {(ans -= nextNum) && (numOfOps += 1) }// if op is a minus string, a gets nextNum taken from it to it
+    else if (op === '×') {(ans *= nextNum) && (numOfOps += 1) }// || || .. ect except for times
+    else if (op === '÷') {(ans /= nextNum) && (numOfOps += 1) }// || || .. ect except for divide
     i++;                                                       // iterate
   }
 document.getElementById("amount").value = ans;                 // display a
