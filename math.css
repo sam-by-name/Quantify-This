@@ -12,6 +12,9 @@
   .row {
     height           : 12.5% !important;
   }
+  h1 {
+    font-size        : 200% !important;
+  }
 }
 @media only screen and (min-width: 800px) {
   .innerCont button {     
@@ -35,6 +38,7 @@
 body {
   background         : url("./gif/background.jpg");
   background-position: top;
+  font-size          : 100% !important;
   margin             : 0 !important;
   padding            : 0 !important;
 }
@@ -58,7 +62,6 @@ h1 {
   padding-top        : 5px !important;
   color              : rgb(0, 245, 253) !important;
   font-family        : 'Courier New', Courier, monospace;
-  font-size          : 100%;
   text-align         : center;
   text-transform     : uppercase;
   text-rendering     : optimizeLegibility;
@@ -164,6 +167,7 @@ h1.elegantShadow {
 .innerCont {
   text-align         : center;
   padding-top        : 100px;
+  font-size          : 50%;
   color              : white;
   font-family        : 'Yatra One', cursive;
 }
