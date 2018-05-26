@@ -7,10 +7,9 @@
     width            : 40% !important;
   }
   .calcCont {
-    padding          : 0 !important;
+    padding          : 0 2% 0 4.6% !important;
   }
   .row {
-    margin           : 0 0 0 2%!important;
     height           : 12.5% !important;
   }
 }
@@ -43,7 +42,7 @@ body {
 /* ////////// Time Round Lives Score //////////////////// */
 .hud {
   background-color   : black;
-  font-size          : 1.5em;
+  font-size          : 90%;
   color              : yellowgreen;
   text-align         : center;
   border             : 1px solid black;
@@ -202,7 +201,8 @@ h1.elegantShadow {
 }
 .row {
   height             : 16%;
-  margin             : 0 0 .3% 0!important;
+  margin-right       : 0 !important;
+  margin-left        : 0 !important;
 }
 button {
   margin             : 0 !important;

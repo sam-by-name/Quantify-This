@@ -107,7 +107,7 @@ function intro () {                                      // On page load
   scoreBoard();                                          // Scoreboard update and ball running
   randomQs();                                            // Clone and shuffle normal questions
   randomBonusQs();                                       // Clone and shuffle bonus questions
-  mainTheme ();
+  //mainTheme ();
 }
 
 const htmlString = "Answer the questions correctly before the timer runs out.\<br>\
