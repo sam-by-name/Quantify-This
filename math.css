@@ -37,10 +37,8 @@
     height           : 25px!important;
     width            : 25px!important;
   }
-  .col-12  {
-    width            : auto !important;
-    margin-top       : 0 !important;
-    padding          : 0 9px 0 0 !important;
+  .skip {
+    width            : 100% !important;
   }
 }
 @media only screen and (min-width: 800px) {
@@ -55,7 +53,6 @@
 @media only screen and (min-width: 1080px) {
   .innerCont button {     
     width            : 20% !important;
-
   }
   .calcCont {
     padding          : 0 30% !important;
@@ -227,6 +224,10 @@ h1.elegantShadow {
 .col-md-4 {
   padding             : 0 !important;
 }
+.col-12  {
+  margin-top       : 0 !important;
+  padding          : 0 9px 0 0 !important;
+}
 .row {
   height             : 16%;
   margin-right       : 0 !important;
@@ -253,13 +254,9 @@ button:active {
 }
 .display {
   margin             : 0 0 !important;
-  width              : 100% !important;
+  flex-direction     : row !important; 
   height             : 100%;
-
   text-align         : right;
-}
-.display input {
-  width              : 100%;
 }
 
 /* ////////////////////// Calc Rows //////////////////////// */
@@ -270,12 +267,12 @@ button:active {
 
 .skip {
   background-color   : black;
-  width              : 95%;
+  width              : 90%;
 }
 
 .equals {
   background-color   : red;
-  width              : 95%;
+  width              : 90%;
 }
 
 
