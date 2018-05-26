@@ -38,7 +38,7 @@
     width            : 25px!important;
   }
   .skip {
-    width            : 100% !important;
+    width            : 101% !important;
   }
 }
 @media only screen and (min-width: 800px) {
