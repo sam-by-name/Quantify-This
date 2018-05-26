@@ -197,7 +197,6 @@ h1.elegantShadow {
   width              : 30%;
   height             : auto;
   padding            : 1%!important;
-  font-size          : 2em !important;
   background-color   : yellowgreen; 
   color              : rgb(128, 128, 221) !important;
   transition         : transform 2s;
