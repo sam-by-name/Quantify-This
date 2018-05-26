@@ -58,7 +58,7 @@ h1 {
   padding-top        : 5px !important;
   color              : rgb(0, 245, 253) !important;
   font-family        : 'Courier New', Courier, monospace;
-  font-size          : 92px;
+  font-size          : 100%;
   text-align         : center;
   text-transform     : uppercase;
   text-rendering     : optimizeLegibility;
